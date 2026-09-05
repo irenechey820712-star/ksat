@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>수능 어법 변별 특강</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Noto+Sans+KR:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --paper:#F1EEE5;
+  --surface:#FBF9F2;
+  --surface-2:#E9E4D6;
+  --ink:#221F1A;
+  --ink-soft:#5B5748;
+  --muted:#8A8574;
+  --line:#D9D3C1;
+  --accent:#20395C;
+  --accent-2:#3C5A82;
+  --accent-soft:#DCE4DE;
+  --correct:#2E7D5B;
+  --correct-soft:#DCEFE3;
+  --incorrect:#B7383A;
+  --incorrect-soft:#F5DFDD;
+  --shadow: 0 1px 2px rgba(34,31,26,.06), 0 6px 20px -8px rgba(34,31,26,.18);
+  --serif-kr:"Gowun Batang", "Noto Serif KR", serif;
+  --serif-en:"Source Serif 4", Georgia, serif;
+  --sans-kr:"Noto Sans KR", "Malgun Gothic", sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#15181A;
+    --surface:#1C2023;
+    --surface-2:#242A2D;
+    --ink:#EDEAE1;
+    --ink-soft:#B7B2A4;
+    --muted:#7D8480;
+    --line:#33393C;
+    --accent:#89AEDD;
+    --accent-2:#6E93C4;
+    --accent-soft:#22322B;
+    --correct:#63C293;
+    --correct-soft:#1B2E24;
+    --incorrect:#E48481;
+    --incorrect-soft:#332022;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px -8px rgba(0,0,0,.5);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#15181A;
+  --surface:#1C2023;
+  --surface-2:#242A2D;
+  --ink:#EDEAE1;
+  --ink-soft:#B7B2A4;
+  --muted:#7D8480;
+  --line:#33393C;
+  --accent:#89AEDD;
+  --accent-2:#6E93C4;
+  --accent-soft:#22322B;
+  --correct:#63C293;
+  --correct-soft:#1B2E24;
+  --incorrect:#E48481;
+  --incorrect-soft:#332022;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px -8px rgba(0,0,0,.5);
+}
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans-kr);
+  line-height:1.6;
+}
+::selection{ background:var(--accent-soft); }
+a{color:var(--accent-2);}
+button{font-family:inherit;}
+
+.app{
+  display:grid;
+  grid-template-columns: 272px 1fr;
+  min-height:100vh;
+}
+.sidebar{
+  border-right:1px solid var(--line);
+  background:var(--surface);
+  padding:22px 16px 28px;
+  position:sticky;
+  top:0;
+  height:100vh;
+  overflow-y:auto;
+}
+.brand{
+  padding:2px 6px 18px;
+  border-bottom:1px solid var(--line);
+  margin-bottom:14px;
+}
+.brand .kicker{
+  font-size:11px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+  font-weight:600;
+}
+.brand h1{
+  font-family:var(--serif-kr);
+  font-size:21px;
+  margin:6px 0 4px;
+  text-wrap:balance;
+  line-height:1.3;
+}
+.brand p{
+  margin:0;
+  font-size:12.5px;
+  color:var(--ink-soft);
+}
+nav.topics{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+.topic-btn{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  width:100%;
+  text-align:left;
+  background:transparent;
+  border:1px solid transparent;
+  border-radius:10px;
+  padding:9px 10px;
+  cursor:pointer;
+  color:var(--ink);
+}
+.topic-btn:hover{ background:var(--surface-2); }
+.topic-btn[aria-current="true"]{
+  background:var(--accent);
+  color:#F4F1E8;
+  border-color:var(--accent);
+}
+.topic-btn .rank{
+  flex:0 0 auto;
+  min-width:26px;height:26px;border-radius:13px;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--serif-en);
+  font-weight:600;
+  font-size:11px;
+  padding:0 3px;
+  background:var(--accent-soft);
+  color:var(--accent);
+  font-variant-numeric:tabular-nums;
+}
+.topic-btn[aria-current="true"] .rank{
+  background:rgba(255,255,255,.18);
+  color:#fff;
+}
+.topic-btn .meta{ min-width:0; flex:1 1 auto; }
+.topic-btn .meta .t{
+  font-size:13.5px;
+  font-weight:600;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.topic-btn .meta .r{
+  font-size:11px;
+  color:var(--muted);
+  font-variant-numeric:tabular-nums;
+}
+.topic-btn[aria-current="true"] .meta .r{ color:#D9E2EE; }
+.topic-btn .prog{
+  flex:0 0 auto;
+  font-size:10.5px;
+  font-variant-numeric:tabular-nums;
+  color:var(--muted);
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:2px 7px;
+}
+.topic-btn[aria-current="true"] .prog{ border-color:rgba(255,255,255,.35); color:#EDF1F7; }
+
+.sidebar-foot{
+  margin-top:18px;
+  padding-top:14px;
+  border-top:1px solid var(--line);
+  font-size:11.5px;
+  color:var(--muted);
+}
+.sidebar-foot button{
+  margin-top:8px;
+  background:none;
+  border:1px solid var(--line);
+  color:var(--ink-soft);
+  border-radius:8px;
+  padding:5px 9px;
+  font-size:11px;
+  cursor:pointer;
+}
+.sidebar-foot button:hover{ background:var(--surface-2); }
+
+main{
+  padding:34px clamp(18px,4vw,56px) 80px;
+  max-width:920px;
+}
+
+.topic-head{
+  display:flex;
+  align-items:flex-start;
+  gap:16px;
+  margin-bottom:22px;
+}
+.topic-head .badge{
+  flex:0 0 auto;
+  width:52px;height:52px;border-radius:14px;
+  background:var(--accent);
+  color:#F4F1E8;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-family:var(--serif-en);
+  padding:0 4px;
+}
+.topic-head .badge .num{ font-size:16px; font-weight:600; line-height:1.15; text-align:center; }
+.topic-head .badge .lbl{ font-size:8px; letter-spacing:.08em; opacity:.8; }
+.topic-head h2{
+  font-family:var(--serif-kr);
+  font-size:clamp(22px,3vw,28px);
+  margin:0 0 4px;
+  text-wrap:balance;
+}
+.topic-head .rate{
+  display:inline-block;
+  font-size:12.5px;
+  color:var(--incorrect);
+  background:var(--incorrect-soft);
+  border-radius:999px;
+  padding:2px 10px;
+  font-variant-numeric:tabular-nums;
+  font-weight:600;
+}
+
+.card{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:14px;
+  box-shadow:var(--shadow);
+}
+
+.formula{
+  padding:18px 20px;
+  margin-bottom:26px;
+}
+.formula .lbl{
+  font-size:11px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--accent-2);
+  font-weight:700;
+  margin-bottom:6px;
+}
+.formula p{
+  margin:0;
+  font-size:14.5px;
+  color:var(--ink-soft);
+}
+
+.section-lbl{
+  display:flex;
+  align-items:baseline;
+  gap:10px;
+  margin:34px 0 6px;
+}
+.section-lbl h3{
+  font-family:var(--serif-kr);
+  font-size:17.5px;
+  margin:0;
+}
+.section-lbl .n{
+  font-size:11.5px;
+  color:var(--muted);
+  font-variant-numeric:tabular-nums;
+}
+.section-note{
+  font-size:12.5px;
+  color:var(--muted);
+  margin:0 0 16px;
+  max-width:62ch;
+}
+
+.q-grid{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+.q-card{
+  padding:16px 18px 17px;
+}
+.q-card .q-top{
+  display:flex;
+  gap:10px;
+  align-items:baseline;
+  margin-bottom:9px;
+}
+.q-card .q-idx{
+  font-family:var(--serif-en);
+  font-weight:600;
+  color:var(--accent-2);
+  font-size:13px;
+  flex:0 0 auto;
+}
+.q-card .q-stem{
+  font-family:var(--serif-en);
+  font-size:15.5px;
+  line-height:1.55;
+}
+.q-card .q-stem em{ font-style:normal; border-bottom:2px dotted var(--muted); }
+
+.choices{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  gap:7px;
+  margin-top:4px;
+}
+.choice{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  text-align:left;
+  padding:8px 11px;
+  border:1px solid var(--line);
+  border-radius:9px;
+  background:var(--surface);
+  cursor:pointer;
+  font-size:13.5px;
+  color:var(--ink);
+}
+.choice:hover{ border-color:var(--accent-2); }
+.choice .k{
+  flex:0 0 auto;
+  width:20px;height:20px;border-radius:50%;
+  border:1px solid var(--muted);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;
+  font-family:var(--serif-en);
+}
+.choice .v{ font-family:var(--serif-en); }
+.choice[disabled]{ cursor:default; }
+.choice.is-correct{ border-color:var(--correct); background:var(--correct-soft); }
+.choice.is-correct .k{ border-color:var(--correct); background:var(--correct); color:#fff; }
+.choice.is-wrong{ border-color:var(--incorrect); background:var(--incorrect-soft); }
+.choice.is-wrong .k{ border-color:var(--incorrect); background:var(--incorrect); color:#fff; }
+
+.explain{
+  margin-top:11px;
+  padding-top:11px;
+  border-top:1px dashed var(--line);
+  font-size:13px;
+  color:var(--ink-soft);
+  display:none;
+}
+.explain.show{ display:block; }
+.explain .tag{
+  display:inline-block;
+  font-size:10.5px;
+  font-weight:700;
+  letter-spacing:.05em;
+  border-radius:5px;
+  padding:1px 6px;
+  margin-right:6px;
+}
+.explain .tag.ok{ background:var(--correct-soft); color:var(--correct); }
+.explain .tag.no{ background:var(--incorrect-soft); color:var(--incorrect); }
+
+.passage-card{ padding:18px 20px 16px; }
+.passage-card .p-head{
+  display:flex; justify-content:space-between; align-items:baseline;
+  margin-bottom:9px;
+}
+.passage-card .p-idx{
+  font-family:var(--serif-en); font-weight:600; color:var(--accent-2); font-size:13px;
+}
+.passage-card .p-hint{ font-size:11.5px; color:var(--muted); }
+.passage{
+  font-family:var(--serif-en);
+  font-size:15px;
+  line-height:1.85;
+}
+.blank{
+  cursor:pointer;
+  border-bottom:2px solid var(--muted);
+  padding:0 1px;
+}
+.blank .circ{
+  font-size:12px;
+  vertical-align:middle;
+  margin-right:1px;
+}
+.blank:hover{ background:var(--accent-soft); }
+.passage.answered .blank{ cursor:default; }
+.passage.answered .blank:hover{ background:transparent; }
+.blank.pick-correct{ background:var(--correct-soft); border-color:var(--correct); border-radius:3px; }
+.blank.pick-wrong{ background:var(--incorrect-soft); border-color:var(--incorrect); border-radius:3px; text-decoration:line-through; text-decoration-color:var(--incorrect); }
+
+footer.page{
+  margin-top:46px;
+  padding-top:16px;
+  border-top:1px solid var(--line);
+  font-size:11.5px;
+  color:var(--muted);
+}
+
+.mobile-tabs{ display:none; }
+
+@media (max-width: 860px){
+  .app{ grid-template-columns:1fr; }
+  .sidebar{ display:none; }
+  .mobile-tabs{
+    display:flex;
+    gap:6px;
+    overflow-x:auto;
+    padding:12px 14px;
+    background:var(--surface);
+    border-bottom:1px solid var(--line);
+    position:sticky; top:0; z-index:5;
+  }
+  .mobile-tabs button{
+    flex:0 0 auto;
+    border:1px solid var(--line);
+    background:var(--surface);
+    color:var(--ink);
+    border-radius:999px;
+    padding:7px 13px;
+    font-size:12.5px;
+    white-space:nowrap;
+  }
+  .mobile-tabs button[aria-current="true"]{
+    background:var(--accent); color:#fff; border-color:var(--accent);
+  }
+  main{ padding:22px 16px 60px; }
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="kicker">최근 10개년 수능 · 어법</div>
+      <h1>수능 어법 변별 특강</h1>
+      <p>1위&ndash;10위 함정 패턴 + 최상위권 변별 문항</p>
+    </div>
+    <nav class="topics" id="nav"></nav>
+    <div class="sidebar-foot">
+      틀린 문항은 붉게, 맞은 문항은 초록으로 표시됩니다. 진행 상황은 이 기기에만 저장됩니다.
+      <button id="resetBtn" type="button">진행 기록 초기화</button>
+    </div>
+  </aside>
+
+  <div>
+    <div class="mobile-tabs" id="mobileTabs"></div>
+    <main id="main"></main>
+  </div>
+</div>
+
+<script>
+// ---------- content data ----------
+// blanks inside passages are marked as §n{text}§
+const U = [
+{
+  id:"rel", rank:1, title:"관계대명사 vs 관계부사", rate:"평균 정답률 38%",
+  formula:"뒤 절이 <b>완전</b>하면 관계부사(where·when·why·how), <b>불완전</b>(주어·목적어·보어 결여)하면 관계대명사(who·whom·whose·which·that). that는 관계대명사로만 쓰이며 관계부사 자리를 대신하지 못한다. 전치사+관계대명사는 관계부사와 같은 뜻이므로 전치사와 관계부사를 겹쳐 쓰면 오류. 콤마 뒤 계속적 용법에는 that을 쓸 수 없고, what은 선행사 없이만 쓴다.",
+  structure:[
+    {q:"The mechanism §b§ enables cells to repair damaged DNA remains only partially understood despite decades of research.",
+     choices:["which","where","by which","whose"], answer:0,
+     explain:"mechanism이 뒤 동사 enables의 주어 자리를 채워야 하므로(불완전절) 주격 관계대명사 which가 필요하다. where는 완전절을 요구하고, whose는 뒤에 소유격 명사가 이어져야 한다."},
+    {q:"Historians have long debated the exact period §b§ the transition from oral to written record-keeping first took place.",
+     choices:["which","when","whose","what"], answer:1,
+     explain:"뒤 절 'the transition ... took place'는 주어·동사가 모두 있는 완전절이며 선행사는 시간(period)이므로 관계부사 when이 맞다. which는 불완전절을 요구한다."},
+    {q:"This is the very laboratory §b§ the discovery of the enzyme was originally made.",
+     choices:["where","which","that","in where"], answer:0,
+     explain:"'the discovery ... was made'는 수동태로 이미 완전한 절이므로 장소를 나타내는 관계부사 where가 필요하다. in where는 관계부사에 전치사를 겹쳐 쓴 이중 오류."},
+    {q:"The committee revised its funding formula for the third consecutive year, §b§ many researchers found deeply troubling.",
+     choices:["that","which","who","what"], answer:1,
+     explain:"콤마로 시작하는 계속적 용법이며 선행사가 앞 절 전체(상황)이므로 which가 맞다. 계속적 용법에는 that을 쓸 수 없다."},
+    {q:"Researchers identified a subgroup of patients §b§ symptoms failed to respond to the standard treatment protocol.",
+     choices:["who","whose","which","that"], answer:1,
+     explain:"patients의 symptoms, 즉 소유 관계이므로 소유격 관계대명사 whose가 필요하다. who·which·that은 뒤에 곧바로 완전한 명사구(주어)를 놓을 수 없다."}
+  ],
+  passages:[
+    {text:"Anthropologists have long studied societies §1{where}§ communal land ownership shapes nearly every economic decision. In many such communities, disputes §2{that}§ arise over resource allocation are resolved not by formal courts but by elders §3{whose}§ judgments carry customary authority. This informal system, §4{which}§ anthropologists describe as remarkably stable, nonetheless depends on a shared understanding of obligation §5{what}§ outsiders often find difficult to grasp.",
+     answer:5, explain:"⑤ obligation이라는 선행사가 이미 있으므로 선행사를 포함하는 what은 쓸 수 없다. outsiders find [obligation] difficult to grasp에서 목적어가 빠진 불완전절이므로 that/which로 고쳐야 한다."},
+    {text:"The excavation team uncovered a settlement §1{that had flourished}§ over three thousand years ago, during a period §2{when}§ long-distance trade networks were just beginning to emerge. Pottery fragments recovered from the site display glaze techniques similar to those found in coastal regions hundreds of kilometers away, a fact §3{which}§ suggests contact between otherwise isolated communities. Researchers are especially interested in the coastal workshops §4{which}§ these techniques were first developed, since the identity of the artisans §5{who}§ worked there remains almost entirely unknown.",
+     answer:4, explain:"④ 'these techniques were first developed'는 이미 완전한 수동태 절이다. workshops는 장소 선행사이므로 which가 아니라 where(또는 in which)가 되어야 한다."},
+    {text:"Economic historians have proposed several explanations for the sudden decline of the trading network, one §1{of which}§ emphasizes a shift in maritime routes. According to this account, merchants §2{whose}§ profits depended heavily on a single overland corridor gradually lost access to buyers §3{where}§ once relied on their goods. The resulting vacuum created an opportunity §4{that}§ rival ports were quick to exploit, reshaping the balance of regional power for generations §5{that}§ followed.",
+     answer:3, explain:"③ buyers는 사람 선행사인데 장소 관계부사 where가 쓰였다. 'relied on their goods'의 주어 자리가 비어 있는 불완전절이므로 사람을 받는 who(또는 that)가 되어야 한다."}
+  ]
+},
+{
+  id:"part", rank:2, title:"현재분사 vs 과거분사", rate:"평균 정답률 42%",
+  formula:"수식받는 명사(또는 분사구문의 의미상 주어)가 행위를 <b>스스로 하면</b> 현재분사(-ing), <b>당하면</b> 과거분사(p.p.). 분사구문의 생략된 주어는 원칙적으로 주절 주어와 일치해야 하며 다르면 dangling modifier 오류다. with+O+분사는 O와 분사의 능동·수동 관계로 형태를 정한다. 감정동사는 감정을 느끼면 -ed, 유발하면 -ing. Judging from / Weather permitting 같은 독립분사구문 관용 표현은 예외로 분리한다.",
+  structure:[
+    {q:"The studies §b§ over the past decade have challenged the assumption that multitasking improves efficiency.",
+     choices:["conducting","conducted","which conducting","were conducted"], answer:1,
+     explain:"studies가 '수행된' 대상이므로 수동 → conducted. were conducted를 쓰면 관계사 없이 정동사가 하나 더 생겨 문장 구조가 깨진다."},
+    {q:"The cognitive processes §b§ attention are highly sensitive to prolonged sleep deprivation.",
+     choices:["regulating","regulated","which regulated by","are regulated"], answer:0,
+     explain:"processes가 attention을 '조절하는' 주체이므로 능동 → regulating."},
+    {q:"Participants §b§ to conflicting evidence were more likely to revise their initial judgments.",
+     choices:["exposing","exposed","who exposing","were exposed"], answer:1,
+     explain:"participants가 증거에 '노출된' 대상이므로 수동 → exposed(= who were exposed)."},
+    {q:"With traditional social structures §b§ by rapid urbanization, communities must find new forms of solidarity.",
+     choices:["disrupting","disrupted","which disrupted","were disrupted"], answer:1,
+     explain:"with+O+분사 구조: structures가 '붕괴되는' 대상이므로 수동 → disrupted."},
+    {q:"§b§ by the unexpected result, the team revised its initial hypothesis entirely.",
+     choices:["Surprising","Surprised","Having surprised","To surprise"], answer:1,
+     explain:"주절 주어 the team이 결과에 '놀란' 대상(감정을 느끼는 경험자)이므로 과거분사 → Surprised."}
+  ],
+  passages:[
+    {text:"Students §1{exposed}§ to competing explanations often compare them with textual evidence, §2{identifying}§ points of conflict. When a claim contradicts information §3{presented}§ in the source, they may revise it, §4{which helping}§ them build a more coherent interpretation, while §5{preserving}§ their own evaluative stance.",
+     answer:4, explain:"④ 관계대명사 which 뒤에는 정동사가 필요하므로 helping 단독으로는 쓸 수 없다. which helps로 고치거나 thereby helping(분사구문)으로 바꿔야 한다."},
+    {text:"The longitudinal study followed adolescents §1{whose}§ sleep patterns varied substantially across the school year. The data, §2{collected}§ at four-week intervals, revealed a decline in attention among students §3{experiencing}§ chronic sleep loss, with several confounding variables §4{controlling}§ statistically and no participant §5{excluded}§ solely because of low initial scores.",
+     answer:3, explain:"④ with+O+분사에서 confounding variables는 '통제되는' 대상이므로 수동 controlled가 되어야 한다."},
+    {text:"Having §1{reviewed}§ all available evidence, the committee concluded that the original claim was overstated. It then issued a recommendation §2{calling}§ for additional replication and noted that several studies §3{citing}§ in the report had used samples §4{too small}§ to support broad generalizations and methods §5{varying}§ considerably across sites.",
+     answer:2, explain:"③ studies가 보고서에 '인용된' 대상이므로 수동 cited가 되어야 한다(현재분사 citing은 능동)."}
+  ]
+},
+{
+  id:"agr", rank:3, title:"주어-동사 수일치", rate:"평균 정답률 46%",
+  formula:"전치사구·관계절·삽입구를 지우고 <b>진짜 주어</b>를 찾는다. 동명사·to부정사·명사절(what/whether) 주어는 단수. a number of는 복수, the number of·the proportion of는 단수. 상관접속사(either/or, neither/nor, not only~but also)는 가까운 명사에 수일치. There is/are나 부사구 도치 구문은 뒤에 오는 진짜 주어에 수일치한다.",
+  structure:[
+    {q:"The findings of the study, published in a leading journal last year, §b§ widely cited by researchers across multiple disciplines.",
+     choices:["has been","have been","is","was"], answer:1,
+     explain:"삽입구(published ~ last year)를 지우면 진짜 주어는 복수 findings → have been."},
+    {q:"Whether the observed pattern reflects a genuine causal relationship or merely a statistical coincidence §b§ still under active investigation.",
+     choices:["are","is","were","have been"], answer:1,
+     explain:"Whether절 전체가 주어이며 명사절 주어는 단수 취급 → is."},
+    {q:"Not only the lead researcher but also her graduate assistants §b§ required to submit a detailed conflict-of-interest disclosure.",
+     choices:["is","was","are","has been"], answer:2,
+     explain:"not only A but also B는 가까운 명사(graduate assistants, 복수)에 수일치 → are."},
+    {q:"A significant proportion of the participants §b§ subsequently withdrawn from the study before its completion.",
+     choices:["has","have","is","was"], answer:1,
+     explain:"'a proportion of + 복수명사'는 뒤 명사(participants)에 따라 복수 취급 → have."},
+    {q:"Never before in the history of the discipline §b§ such a comprehensive dataset been made publicly available to independent researchers.",
+     choices:["has","have","did","is"], answer:0,
+     explain:"부정어 Never 도치 구문이며 진짜 주어 'such a comprehensive dataset'는 단수 → has(현재완료 수동 도치)."}
+  ],
+  passages:[
+    {text:"The extent to which early childhood experiences shape adult personality §1{remains}§ a subject of considerable debate among developmental psychologists. Some researchers, drawing on longitudinal data spanning several decades, §2{argue}§ that early attachment patterns exert a lasting influence. Others, however, point out that the correlations reported in such studies §3{is}§ often weaker than commonly assumed once confounding variables are properly controlled. What ultimately complicates the debate §4{is}§ the difficulty of isolating early experience from the many factors that continue §5{to shape}§ personality throughout adulthood.",
+     answer:3, explain:"③ 진짜 주어는 복수 the correlations(reported in such studies는 수식어)이므로 are가 되어야 한다."},
+    {text:"Among the many variables researchers have examined, the amount of sleep adolescents get on school nights §1{has}§ repeatedly emerged as a strong predictor of academic performance. What is less clear, though, §2{is}§ whether the relationship reflects a direct causal effect or a shared underlying factor such as household stress. Neither the students' self-reported sleep duration nor their parents' estimates §3{has}§ proven especially reliable, since both groups tend to round figures to convenient numbers. Consequently, a growing number of researchers §4{believe}§ that objective measures, such as wearable sensors, §5{are}§ necessary to resolve the question.",
+     answer:3, explain:"③ neither A nor B는 가까운 명사에 수일치하는데, 가까운 명사 their parents' estimates가 복수이므로 have가 되어야 한다."},
+    {text:"What the survey data ultimately reveal §1{is}§ that public attitudes toward automation vary considerably across occupational groups. Workers in routine clerical roles, along with a smaller number of manufacturing employees, §2{express}§ the greatest concern about job displacement. Interestingly, the proportion of respondents who describe themselves as 'very worried' §3{have}§ declined slightly since the previous survey, even as media coverage of automation has intensified. Each of the demographic subgroups examined in the report §4{shows}§ a distinct pattern of concern, suggesting that a single policy response §5{is}§ unlikely to address every group's concerns effectively.",
+     answer:3, explain:"③ 'the proportion of'는 뒤 명사와 상관없이 단수 취급하므로 has가 되어야 한다. ('a number of'는 복수 취급이지만 'the proportion of'는 단수 취급이라는 점이 함정.)"}
+  ]
+},
+{
+  id:"thwh", rank:4, title:"that vs what (명사절)", rate:"평균 정답률 49%",
+  formula:"that 뒤에는 빠진 성분이 없는 <b>완전한 절</b>이 오는 순수 접속사이고, what 뒤에는 주어나 목적어가 빠진 <b>불완전한 절</b>이 오며 그 자체로 선행사를 포함한다(=the thing that). 명사 뒤 동격절에는 that만 가능하고 선행사가 있는 자리에는 what을 쓸 수 없다. 단, 'what+명사'가 의문형용사로 쓰이면(예: what role) 뒤에 완전한 절이 와도 오류가 아니다.",
+  structure:[
+    {q:"Recent research suggests §b§ social isolation can have measurable effects on cognitive decline in older adults.",
+     choices:["what","that","which","how"], answer:1,
+     explain:"suggests의 목적어로 완전한 절(social isolation can have ~)이 이어지므로 접속사 that이 필요하다."},
+    {q:"§b§ struck the committee most forcefully was the sheer scale of data fabrication uncovered during the audit.",
+     choices:["That","What","It","Which"], answer:1,
+     explain:"뒤 'struck the committee'에서 주어가 빠진 불완전절이므로 선행사를 포함하는 what이 필요하다."},
+    {q:"Historians continue to debate §b§ ultimately caused the sudden collapse of the empire's trade networks.",
+     choices:["that","what","which","whether"], answer:1,
+     explain:"뒤 'caused the sudden collapse'에서 주어가 빠져 있으므로 what이 필요하다. whether는 뒤에 완전절이 와야 한다."},
+    {q:"The phenomenon §b§ 'groupthink' by social psychologists tends to emerge most readily within highly cohesive teams.",
+     choices:["what is called","that is called","which called","calling"], answer:1,
+     explain:"이미 선행사 The phenomenon이 있으므로 선행사 없이 쓰는 관용구 'what is called'는 쓸 수 없다. 선행사가 있으면 관계대명사 that/which를 써서 'that is called'가 되어야 한다."},
+    {q:"The finding §b§ prior expectations can measurably distort perceptual judgments has significant implications for eyewitness testimony research.",
+     choices:["what","that","which","whom"], answer:1,
+     explain:"The finding과 동격을 이루는 완전한 절이므로 동격의 접속사 that이 필요하다."}
+  ],
+  passages:[
+    {text:"§1{What}§ surprised the reviewers most was not the size of the dataset but the consistency of the pattern across every subgroup examined. The authors argue §2{that}§ this consistency rules out several alternative explanations previously proposed in the literature. Critics counter, however, §3{what}§ the apparent consistency may simply reflect a shared methodological artifact rather than a genuine underlying effect. Regardless of §4{which}§ interpretation eventually prevails, most researchers agree on the fact §5{that}§ the original finding warrants further replication.",
+     answer:2, explain:"③ 뒤 절 'the apparent consistency may simply reflect ~'는 완전한 절이므로 접속사 that이 되어야 한다."},
+    {text:"Economists have long puzzled over §1{what}§ determines a currency's perceived stability in periods of political uncertainty. Some argue §2{that}§ investor confidence depends primarily on a government's fiscal track record, while others emphasize §3{what}§ role central bank independence plays in shaping expectations. A recent study proposes §4{what}§ both factors interact, with fiscal credibility mattering far more in countries §5{that}§ lack a strong history of central bank autonomy.",
+     answer:3, explain:"④ proposes 뒤에 완전한 절(both factors interact)이 이어지므로 that이 되어야 한다. ③의 'what role ~ plays'는 '어떤 역할을 하는지'를 뜻하는 간접의문문으로 옳은 표현이니 혼동하지 않는다."},
+    {text:"It is now widely accepted §1{that}§ adolescent decision-making differs systematically from adult decision-making, particularly under emotionally charged conditions. §2{What}§ remains contested is the extent to which these differences stem from biological immaturity rather than inexperience. Some neuroscientists maintain §3{what}§ the prefrontal cortex, which governs impulse control, continues to mature well into a person's twenties. Others caution against overstating §4{what}§ a still-developing brain necessarily implies about a young person's legal responsibility, noting §5{that}§ the relationship between brain maturation and behavior is far from straightforward.",
+     answer:2, explain:"③ 뒤 절 'the prefrontal cortex ~ continues to mature'는 완전한 절이므로 that이 되어야 한다. ④의 'what a brain implies'는 implies의 목적어가 빠진 불완전절이므로 올바른 what이다."}
+  ]
+},
+{
+  id:"subj", rank:5, title:"가정법 과거 / 과거완료", rate:"평균 정답률 52%",
+  formula:"가정법 과거(If+과거, would+원형)는 <b>현재</b> 사실의 반대, 가정법 과거완료(If+had p.p., would have p.p.)는 <b>과거</b> 사실의 반대다. 조건절은 과거인데 결과절이 가리키는 시점이 현재이면 혼합가정법(If+had p.p., would+원형)을 쓴다. wish·as if 뒤의 시제도 같은 원리로 판단하며, if가 생략되면 조동사(had/were/should)가 주어 앞으로 도치된다. unless는 절을, without/but for는 명사(구)를 이끈다.",
+  structure:[
+    {q:"§b§ the funding cuts been announced earlier, the research team could have adjusted its data collection timeline accordingly.",
+     choices:["If","Had","Should","Were"], answer:1,
+     explain:"if가 생략된 가정법 과거완료 도치 구문이므로 Had+주어+p.p. 형태가 필요하다."},
+    {q:"Many economists believe that §b§ the central bank not intervened when it did, the recession would have been considerably more severe.",
+     choices:["had","has","if","unless"], answer:0,
+     explain:"if가 생략된 도치 구문으로 'had the central bank not intervened' = if the central bank had not intervened. 뒤에 had가 따로 없으므로 if를 넣으면 문장이 틀어진다."},
+    {q:"Looking back on her graduate years, she often says she wishes she §b§ more time exploring alternative research methods before committing to a single approach.",
+     choices:["spends","spent","had spent","would spend"], answer:2,
+     explain:"이미 끝난 과거의 일에 대한 아쉬움이므로 wish+had p.p.(가정법 과거완료)가 필요하다."},
+    {q:"Even though the experiment produced statistically insignificant results, the lead author wrote the discussion section as if the hypothesis §b§ conclusively confirmed.",
+     choices:["is","has been","were","will be"], answer:2,
+     explain:"as if+가정법 과거(현재 사실의 반대, 실제로는 확인되지 않음)이므로 were가 필요하다."},
+    {q:"Had the committee approved the proposal last spring, the pilot program §b§ already several months into its first phase.",
+     choices:["would be","would have been","will be","had been"], answer:0,
+     explain:"조건절은 과거(had approved), 결과절이 가리키는 시점은 현재(already ~ months into)이므로 혼합가정법: would+동사원형."}
+  ],
+  passages:[
+    {text:"Some historians argue that §1{had}§ the treaty been ratified as originally drafted, the subsequent decade of regional conflict §2{might have been}§ avoided altogether. Others are less certain, suggesting that even §3{if}§ the treaty had passed, enforcement mechanisms of the era were too weak to guarantee compliance. It is telling that several diplomats at the time privately wished the negotiations §4{were}§ extended by several additional months. In hindsight, many scholars maintain that §5{unless}§ the intervention of a neutral third party, the treaty would never have been signed at all.",
+     answer:5, explain:"⑤ unless는 절(주어+동사)을 이끄는 접속사인데 뒤에 명사구(the intervention ~)가 왔다. '~가 없었다면'이라는 뜻이므로 명사(구)를 이끄는 without이나 but for로 고쳐야 한다."},
+    {text:"If researchers §1{had}§ accounted for the seasonal variation in the original dataset, the reported correlation would very likely §2{have been}§ weaker than initially claimed. This possibility troubles several scientists in the field, some of whom now wish the original study §3{included}§ a longer observation period from the outset. Even proponents of the original findings concede that §4{had}§ the seasonal effect been recognized earlier, the entire research program might have taken a different direction. Critics maintain that, §5{were}§ the study to be repeated today with modern statistical techniques, the original conclusion would almost certainly not hold.",
+     answer:2, explain:"③ 이미 끝난 과거 연구 설계에 대한 아쉬움이므로 wish+had p.p.가 필요하다. included(단순과거)가 아니라 had included여야 한다."},
+    {text:"Suppose a policymaker §1{were}§ to rely solely on short-term economic indicators; she would risk overlooking structural problems that only become visible over longer time horizons. Indeed, several analysts believe that §2{had}§ the previous administration paid closer attention to long-term productivity trends rather than quarterly growth figures, the current slowdown §3{would have been}§ considerably less severe. Some go further, arguing that but for the sustained investment in infrastructure during that period, the economy's underlying weaknesses §4{would have surfaced}§ far sooner. Even so, most economists agree that §5{had}§ hindsight not been available, the original policy choices would have seemed reasonable at the time.",
+     answer:2, explain:"③ 조건절(had paid closer attention)은 과거의 반대이지만, 결과절이 가리키는 시점은 'the current slowdown'(현재)이므로 혼합가정법 would be가 되어야 한다. 시간 표현이 결과절의 시점을 결정한다는 점을 놓치기 쉽다."}
+  ]
+},
+{
+  id:"parallel", rank:6, title:"병렬구조", rate:"정답률 55%",
+  formula:"등위접속사(and/but/or)와 상관접속사(not only~but also, either~or, both~and 등)로 연결된 요소는 <b>문법적 형태</b>(품사·시제·태)가 같아야 한다. 명사구와 동명사구, 원형동사와 -ing를 섞어 쓰면 오류다. 반복되는 to부정사의 to는 생략할 수 있지만, 그 경우에도 동사원형은 유지되어야 한다.",
+  structure:[
+    {q:"The program was designed to strengthen students' analytical skills, to encourage independent research, and §b§ collaborative habits among peer groups.",
+     choices:["fostering","foster","fosters","having fostered"], answer:1,
+     explain:"to strengthen, to encourage와 병렬을 이루며 반복되는 to가 생략된 형태이므로 원형부정사 foster가 필요하다."},
+    {q:"Effective negotiation depends less on winning every point than on §b§ the other party's underlying interests and adjusting one's position accordingly.",
+     choices:["understand","to understand","understanding","understood"], answer:2,
+     explain:"전치사 on의 목적어이자 뒤의 동명사 adjusting과 병렬을 이루어야 하므로 understanding이 필요하다."},
+    {q:"The revised policy not only reduced administrative costs but also §b§ significantly to employee satisfaction, according to internal survey data.",
+     choices:["contributing","contributed","to contribute","contribution"], answer:1,
+     explain:"not only reduced와 but also 뒤의 동사가 같은 시제·형태로 병렬을 이루어야 하므로 과거형 contributed가 필요하다."},
+    {q:"Effective mentors listen carefully, ask clarifying questions, and §b§ specific, actionable feedback rather than vague praise.",
+     choices:["offering","offer","offers","to offer"], answer:1,
+     explain:"listen, ask와 병렬을 이루는 원형동사이므로 offer가 필요하다(주어 mentors는 복수이므로 offers도 불가)."},
+    {q:"The committee's final report was thorough, well-documented, and §b§ enough to guide policy decisions for the next decade.",
+     choices:["persuade","persuasive","persuasively","persuasion"], answer:1,
+     explain:"thorough, well-documented와 병렬을 이루는 형용사이므로 persuasive가 필요하다."}
+  ],
+  passages:[
+    {text:"Successful negotiators typically prepare by researching the other party's interests, §1{anticipating}§ likely objections, and §2{to rehearse}§ responses to the toughest questions they expect to face. During the negotiation itself, they listen actively, §3{restate}§ the other side's key concerns to confirm understanding, and avoid interrupting. Afterward, effective negotiators reflect on what worked, §4{identify}§ missteps, and revise their approach for next time, treating each negotiation as §5{both}§ a transaction and a rehearsal for future ones.",
+     answer:2, explain:"전치사 by의 목적어로 이어지는 동명사구 researching, anticipating과 병렬을 이루어야 하므로 to rehearse가 아니라 rehearsing이 되어야 한다."},
+    {text:"A well-run classroom depends less on strict rules than on clearly explaining expectations, consistently reinforcing routines, and §1{maintain}§ a respectful tone at all times. Teachers who succeed at this tend to explain the reasoning behind a rule, §2{model}§ the behavior they expect, and follow through calmly when a rule is broken. Students, in turn, learn not only to follow instructions but also §3{to understand}§ why the instructions matter, which makes them more likely to apply the same standards §4{when}§ no adult is watching. Over time, such classrooms become places where students feel supported rather §5{than}§ controlled.",
+     answer:1, explain:"explaining, reinforcing와 병렬을 이루어야 하므로 원형 maintain이 아니라 동명사 maintaining이 되어야 한다."},
+    {text:"Good scientific writing does more than report results: it explains why the results matter, situates them within existing research, and §1{acknowledges}§ the study's limitations honestly. A well-written methods section should be detailed enough for another researcher to replicate the study but §2{concisely}§ enough to keep readers from losing the thread. Reviewers often look for whether the discussion section either overstates the findings or §3{fails}§ to address obvious alternative explanations. Clear writing does not just make a paper easier to read; it also makes the underlying reasoning easier §4{to check}§, which is why journals increasingly reward clarity as much §5{as}§ originality.",
+     answer:2, explain:"앞의 형용사 detailed와 병렬을 이루어야 하므로 부사 concisely가 아니라 형용사 concise가 되어야 한다."}
+  ]
+},
+{
+  id:"voice", rank:7, title:"능동 vs 수동", rate:"정답률 58%",
+  formula:"주어가 행위를 하면 능동태, 행위를 <b>당하면</b> 수동태(be p.p.)를 쓴다. occur·happen·arise·remain처럼 목적어를 갖지 않는 자동사는 수동태로 쓸 수 없다. attribute·relocate·restore처럼 목적어를 반드시 요구하는 타동사는 주어가 그 행위의 대상일 때 수동형으로 바뀌어야 하며, 5형식 문장을 수동태로 바꾸면 사역·지각동사의 원형부정사는 to부정사로 바뀐다.",
+  structure:[
+    {q:"Several unexpected side effects §b§ during the clinical trial's third phase, prompting researchers to suspend enrollment temporarily.",
+     choices:["occurred","were occurred","had been occurred","were occurring by"], answer:0,
+     explain:"occur는 목적어를 취하지 않는 자동사로 수동태를 만들 수 없다. 능동 과거형 occurred가 맞다."},
+    {q:"The technicians were §b§ to recalibrate the equipment every morning before data collection began.",
+     choices:["required","require","requiring","required them"], answer:0,
+     explain:"require O to R 구조의 수동태(S be required to R)이므로 과거분사 required가 필요하다."},
+    {q:"The novel's plot twist §b§ many readers completely off guard when the story first appeared.",
+     choices:["caught","was caught","was catching","had been caught"], answer:0,
+     explain:"plot twist가 독자를 '놀라게 한' 주체이므로 능동 catch off guard의 과거형 caught가 필요하다."},
+    {q:"Witnesses reported that the fire alarm §b§ to sound automatically for nearly ten minutes before anyone noticed.",
+     choices:["allowed","was allowed","let","was let"], answer:1,
+     explain:"allow+O+to R 구조의 수동태(alarm이 울리도록 '허용된' 대상)이므로 was allowed가 필요하다."},
+    {q:"The committee members §b§ to leave the meeting early because of the emergency.",
+     choices:["made","were made","had made","let"], answer:1,
+     explain:"make+O+원형의 수동태는 be made to R(원형이 to부정사로 바뀜)이므로 were made가 필요하다."}
+  ],
+  passages:[
+    {text:"The revised curriculum aims to strengthen critical thinking, to promote collaborative problem-solving, and to cultivate a habit of evidence-based reasoning among students. Teachers report that the new materials are generally well received, though some find the pacing too demanding for students who struggle with independent work. Several pilot schools have already §1{adopted}§ the framework, and preliminary results suggest that student engagement has §2{increased}§ modestly since implementation began. However, the committee cautions that the observed gains cannot yet §3{attribute}§ to the curriculum alone, since several other reforms were introduced during the same period. Researchers therefore recommend that the results be §4{interpreted}§ cautiously until a controlled follow-up study §5{confirms}§ the pattern.",
+     answer:3, explain:"attribute는 반드시 목적어를 요구하는 타동사다. 여기서 주어 the observed gains는 '귀속되는' 대상이므로 수동형 be attributed로 고쳐야 한다."},
+    {text:"A well-designed survey instrument should be easy to administer, easy to score, and capable of yielding data that can be meaningfully compared across groups. In the current study, the questionnaire was §1{translated}§ into three languages and then back-translated to verify accuracy. Item responses were subsequently §2{standardizing}§ before being entered into the statistical model, a step intended to correct for differences in response style across cultural groups. The research team §3{encountered}§ unexpected difficulties when several items appeared harder to translate than expected, and two items §4{were dropped}§ entirely after the pilot phase §5{revealed}§ persistent ambiguity in their wording.",
+     answer:1, explain:"주어 Item responses는 '표준화되는' 대상이므로 수동태가 필요하다. were standardizing이 아니라 were standardized가 되어야 한다."},
+    {text:"The bridge's original design §1{was praised}§ for its elegant simplicity, but engineers later discovered that several load calculations §2{had been miscalculated}§ during the initial planning phase. When the error §3{was finally noticed}§, the construction crew had already poured most of the foundation. Repairs §4{carried out}§ without closing the bridge to traffic, though the project managers privately §5{worried}§ about the additional cost.",
+     answer:3, explain:"Repairs가 '수행되는' 대상이므로 수동태가 필요하다. carried out만으로는 문장의 정동사가 없어 비문이 되므로 were carried out이 되어야 한다."}
+  ]
+},
+{
+  id:"reflexive", rank:8, title:"재귀대명사", rate:"정답률 62%",
+  formula:"주어와 목적어가 <b>같은 대상</b>을 가리키면 재귀대명사(-self/-selves)를 쓰고, 서로 <b>다른 대상</b>이면 인칭대명사나 상호대명사(each other, one another)를 쓴다. 주어나 목적어 바로 뒤에 붙이면 '직접'이라는 뜻의 강조 용법이며, 이때는 생략해도 문장이 완전하다. each of them처럼 단수로 취급되는 표현 뒤에는 단수 재귀대명사가 와야 한다.",
+  structure:[
+    {q:"After reviewing her own data a second time, the researcher realized she had unintentionally misled §b§ about the strength of the correlation.",
+     choices:["her","herself","hers","she"], answer:1,
+     explain:"주어(the researcher)와 목적어가 같은 대상(자기 자신을 속임)이므로 재귀대명사 herself가 필요하다."},
+    {q:"The committee chair §b§ reviewed every submission personally, rather than delegating the task to junior staff.",
+     choices:["her","hers","herself","hers own"], answer:2,
+     explain:"주어 바로 뒤에서 '직접'이라는 뜻을 더하는 강조 용법의 재귀대명사 herself가 필요하다(생략해도 문장은 완전)."},
+    {q:"The two departments have historically blamed §b§ for every missed deadline, rarely examining their own shared processes.",
+     choices:["themselves","each other","them","it"], answer:1,
+     explain:"두 부서가 '서로'를 비난한 것이므로 재귀대명사 themselves가 아니라 상호대명사 each other가 되어야 한다."},
+    {q:"The new intern found §b§ struggling to keep up with the pace of the newsroom during her first week.",
+     choices:["her","herself","hers","it"], answer:1,
+     explain:"find oneself -ing(자기 자신이 ~하고 있음을 알게 되다)는 주어와 목적어가 같은 대상이므로 herself가 필요하다."},
+    {q:"The two rival labs eventually agreed to share their raw data with §b§, ending years of unnecessary duplication.",
+     choices:["themselves","one another","them","it"], answer:1,
+     explain:"두 연구소가 서로 자료를 공유한 것이므로 재귀대명사 themselves가 아니라 상호대명사 one another가 되어야 한다."}
+  ],
+  passages:[
+    {text:"Before presenting to the board, the CFO reminded §1{herself}§ to speak slowly and avoid financial jargon the directors might not recognize. During the meeting, two board members repeatedly interrupted §2{themselves}§, each trying to finish a point before the other could respond. The CFO, sensing the tension, offered §3{herself}§ as a mediator, suggesting that the two directors take turns speaking. Afterward, the directors privately admitted to §4{themselves}§ that the disagreement had been more about ego than substance, and they each resolved to listen more carefully in future meetings, §5{reminding}§ themselves that consensus mattered more than being right.",
+     answer:2, explain:"두 명의 이사가 '서로'를 방해한 것이므로 재귀대명사 themselves가 아니라 상호대명사 each other가 되어야 한다."},
+    {text:"The twins have always been fiercely competitive, constantly comparing §1{themselves}§ to one another rather than measuring their own progress. Their coach eventually told them privately that comparing §2{themselves}§ to a sibling was unlikely to help either of them improve. Each twin, he suggested, should instead ask §3{herself}§ a simpler question: was she better today than she had been last month? The twins found the advice hard to follow at first, since they had spent years defining §4{themselves}§ almost entirely in relation to each other. Eventually, though, each of them learned to set goals for §5{themselves}§ rather than in comparison with her sister.",
+     answer:5, explain:"'each of them'은 단수로 취급되므로, 이를 받는 재귀대명사도 복수형 themselves가 아니라 단수형 herself가 되어야 한다."},
+    {text:"When the two startups merged, employees from both companies were initially cautious about trusting §1{each other}§, since they had spent years competing for the same clients. The new CEO made a point of introducing §2{herself}§ personally to every team rather than relying on a company-wide email. She also encouraged managers to give §3{themselves}§ time to build relationships slowly instead of forcing collaboration overnight. Within a few months, most employees reported that they finally felt comfortable expressing disagreement to §4{one another}§ without fear of damaging the merger. Looking back, the CEO admitted to §5{himself}§ that the transition had gone more smoothly than she had expected.",
+     answer:5, explain:"앞에서 CEO를 she로 지칭했으므로 재귀대명사도 성이 일치하는 herself가 되어야 한다. himself는 성 불일치 오류."}
+  ]
+},
+{
+  id:"verbals", rank:9, title:"to부정사 vs 동명사", rate:"정답률 65%",
+  formula:"remember/forget/regret + <b>-ing</b>는 이미 일어난 일을, + <b>to R</b>는 앞으로 할 일을 가리킨다. stop + -ing는 하던 일을 멈추는 것이고, stop + to R는 멈추고 다른 일을 하러 간다는 뜻이다. recommend·avoid·consider·suggest·finish·enjoy·give up 등은 동명사만을, decide·want·hope·agree·plan·afford·refuse 등은 to부정사만을 목적어로 취한다.",
+  structure:[
+    {q:"She still clearly remembers §b§ the unexpected result for the first time, though she has since forgotten most of the technical details.",
+     choices:["to see","seeing","see","having to see"], answer:1,
+     explain:"'처음 결과를 봤던 것을 기억한다'는 이미 일어난 과거의 일이므로 remember+-ing가 필요하다."},
+    {q:"The advisory board strongly recommended §b§ the pilot program before expanding it to additional sites.",
+     choices:["to evaluate","evaluate","evaluating","evaluated"], answer:2,
+     explain:"recommend는 동명사를 목적어로 취하는 동사이며 to부정사를 목적어로 쓰지 않는다."},
+    {q:"After the accident, the driver could not stop §b§ about how differently the evening might have ended.",
+     choices:["thinking","to think","think","having think"], answer:0,
+     explain:"stop+-ing(하던 것을 멈추다)이므로 생각을 멈추지 못했다는 의미의 thinking이 필요하다."},
+    {q:"The negotiators finally agreed §b§ the merger on the condition that no employees would be laid off within the first year.",
+     choices:["approving","to approve","approve","having approved"], answer:1,
+     explain:"agree는 to부정사만을 목적어로 취하는 동사이므로 to approve가 필요하다."},
+    {q:"The professor suggested §b§ the experiment with a larger sample before submitting the results for publication.",
+     choices:["to repeat","repeat","repeating","repeated"], answer:2,
+     explain:"suggest는 동명사만을 목적어로 취하는 동사이므로 repeating이 필요하다."}
+  ],
+  passages:[
+    {text:"Graduate students often find themselves overwhelmed by the sheer volume of literature in their field during the first year of study. Advisors typically recommend §1{to narrow}§ the scope of inquiry as early as possible, rather than attempting to read exhaustively across every related subfield. Students who fail to do so frequently regret §2{not narrowing}§ their focus sooner, having spent months on background reading that ultimately proved only marginally relevant to their dissertation topic. Faculty mentors, for their part, must remind themselves that what feels obvious after years of experience is rarely obvious to a novice researcher, and they often need to §3{practice}§ explaining basic concepts §4{as if}§ for the first time, resisting the urge §5{to skip}§ steps that now feel automatic.",
+     answer:1, explain:"recommend는 목적어로 동명사(또는 that절)를 취하며 to부정사를 목적어로 쓰지 않는다. to narrow가 아니라 narrowing이 되어야 한다."},
+    {text:"Before submitting the manuscript, the authors reminded themselves to double-check every statistical value against the raw output files. The lead author admitted that she had initially forgotten §1{to update}§ one of the tables after a late revision, a mistake that could easily have gone unnoticed. Reviewers later praised the paper for being remarkably thorough, noting that the authors had clearly avoided §2{to rush}§ the analysis despite a tight deadline. Even so, the editor suggested that the team allow itself more time for §3{proofreading}§ in future submissions, since rushing had nearly §4{caused}§ an embarrassing error §5{to slip}§ through unnoticed.",
+     answer:1, explain:"avoid는 동명사만을 목적어로 취하는 동사다. to rush가 아니라 rushing이 되어야 한다."},
+    {text:"The mentor encouraged the interns to challenge themselves by tackling problems slightly beyond their current comfort level. She often reminded them that even experienced researchers occasionally fail to notice errors in their own work and therefore must learn to review their results as critically as they would review someone else's. One intern admitted that he had stopped §1{to check}§ his code line by line after early successes, a habit he later regretted once a subtle bug went undetected for weeks. The mentor pointed out that the bug, though seemingly minor, had quietly distorted several downstream calculations, and she urged the whole team §2{to remain}§ consistent, §3{noting}§ that skipping this habit even once tends §4{to lead}§ to more, not fewer, §5{undetected}§ errors later on.",
+     answer:1, explain:"'코드를 그만 확인하게 되었다'는 문맥이므로 stop+-ing(하던 일을 멈추다)가 필요하다. stop to check(다른 일을 하려고 멈추다)는 문맥에 맞지 않는다."}
+  ]
+},
+{
+  id:"adjadv", rank:10, title:"형용사 vs 부사", rate:"정답률 68%",
+  formula:"명사·대명사를 꾸미거나 주격·목적격 보어 자리에 오면 <b>형용사</b>, 동사·형용사·다른 부사·문장 전체를 꾸미면 <b>부사</b>다. look·feel·seem·remain·become 등 2형식 동사의 보어 자리에는 부사가 아니라 형용사가 온다. 비교급을 강조하는 much·even·still·far·a lot은 부사이며, 형용사·부사 동형(hard/fast 등)은 문맥으로 품사를 판단한다.",
+  structure:[
+    {q:"Given how §b§ the funding situation has changed in recent months, the department has had to revise its research priorities twice already.",
+     choices:["drastic","drastically","drastic ones","most drastic"], answer:1,
+     explain:"동사 has changed를 수식해야 하므로 부사 drastically가 필요하다."},
+    {q:"The negotiations remained §b§ for nearly six months, with neither side willing to make the first concession.",
+     choices:["tense","tensely","tension","tensing"], answer:0,
+     explain:"remain은 2형식 동사이므로 보어 자리에 부사가 아니라 형용사 tense가 필요하다."},
+    {q:"The revised proposal addressed the board's concerns §b§ than the original draft had.",
+     choices:["more thorough","more thoroughly","thorougher","most thorough"], answer:1,
+     explain:"동사 addressed를 수식하는 부사 비교급이 필요하므로 more thoroughly가 필요하다."},
+    {q:"Critics found the film's pacing §b§ slow for a story with so little plot to sustain it.",
+     choices:["surprising","surprisingly","surprise","surprised"], answer:1,
+     explain:"형용사 slow를 수식해야 하므로 부사 surprisingly가 필요하다."},
+    {q:"Although the results looked §b§ promising at first glance, a closer analysis revealed several methodological flaws.",
+     choices:["fair","fairly","fairer","fairness"], answer:1,
+     explain:"형용사 promising을 수식해야 하므로 부사 fairly가 필요하다."}
+  ],
+  passages:[
+    {text:"The lecture hall grew unusually §1{quiet}§ as the visiting professor began to describe her fieldwork in the Amazon. She spoke §2{calmly}§ about the months she had spent living among a community whose language had never been recorded, and the students listened §3{close}§ to every detail. What struck the audience most was how §4{genuinely}§ curious she remained even after decades in the field. By the end of the talk, several students who had seemed §5{indifferent}§ at the start were asking the most thoughtful questions.",
+     answer:2, explain:"동사 listened를 수식해야 하므로 형용사 close가 아니라 부사 closely가 되어야 한다."},
+    {text:"The new intern seemed §1{nervous}§ during her first presentation, glancing at her notes far more §2{frequently}§ than she needed to. Her supervisor, who had sat through dozens of similar presentations, thought her data was §3{remarkably}§ solid despite her obvious nerves. He also noticed that she answered every question §4{confident}§, even when she clearly hadn't anticipated it. By the time the meeting ended, the team felt §5{reasonably}§ convinced that she would grow into the role quickly.",
+     answer:3, explain:"동사 answered를 수식해야 하므로 형용사 confident가 아니라 부사 confidently가 되어야 한다."},
+    {text:"The renovated library looks §1{strikingly}§ different from the cramped building it replaced. Students who once avoided the reading room now describe it as §2{genuinely}§ pleasant, with natural light pouring in from floor-to-ceiling windows. The architect explained that she had worked §3{hard}§ to preserve the building's original character while making the space feel more open. Even the librarians, who were initially skeptical of the redesign, admit that patrons now behave §4{surprising}§ more considerately, perhaps because the space itself feels more dignified. The renovation, everyone agrees, turned out §5{far}§ better than anyone had expected.",
+     answer:3, explain:"비교급 부사구 more considerately를 수식해야 하므로 형용사 surprising이 아니라 부사 surprisingly가 되어야 한다."}
+  ]
+},
+{
+  id:"kisa", rank:"기출", title:"실전 기출문제 은행 (2016~2025)", rate:"학력평가·모의평가 다음 글의 밑줄 친 부분 중 어법상 틀린 것 찾기",
+  formula:"여기 실린 16문항은 창작 문항이 아니라 <b>실제 전국연합학력평가·모의평가에 출제된 진짜 기출문제</b>입니다. 한 지문 안에 여러 어법 요소가 섞여 있으므로, 위 7개 패턴에서 배운 판단 기준을 그대로 적용해 ①~⑤ 중 틀린 곳을 스스로 찾아보세요. 괄호 안은 실제 응시생 정답률입니다.",
+  structure:[],
+  passages:[
+    {text:"[2025년 9월 학평 29번 · 정답률 48%]  Big mammalian herbivore species react to danger from predators or humans in different ways. Some species are nervous, fast, and programmed for instant flight when they perceive a threat. Other species are slower, less nervous, seek protection in herds, §1{stand}§ their ground when threatened, and don't run until necessary. Naturally, the nervous species are difficult to keep in captivity. If §2{putting}§ into an enclosure, they are likely to panic, and either die of shock or hit themselves repeatedly to death against the fence in their attempts to escape. That's true, for example, of gazelles, §3{which}§ for thousands of years were the most frequently hunted game species in some parts of the Fertile Crescent. There is no mammal species that the first settled peoples of that area had more opportunity §4{to domesticate}§ than gazelles. But no gazelle species has ever been domesticated. Just imagine trying to herd an animal that runs away, blindly hits §5{itself}§ against walls, can leap up to nearly 30 feet, and can run at a speed of 50 miles per hour!",
+     answer:2, explain:"주어(the nervous species = they)가 우리에 '넣어지는' 대상이므로 분사구문은 수동형 put이어야 한다. 능동형 putting은 오류."},
+    {text:"[2024년 10월 학평 29번 · 정답률 47%]  Sometime late in the next millennium, our descendants may head off to other star systems. They may use comets as stepping-stones, some of which are only §1{loosely}§ bound to our sun because they reach almost halfway to the nearest star system, Alpha Centauri. Our remote descendants may eventually colonize much of our galaxy just as the first living organisms on Earth once colonized Earth's young oceans. Interstellar migrations will depend on as yet unimagined technologies for driving ships, for maintaining sustainable environments, and for putting humans into hibernations §2{last}§ for centuries. Interstellar journeys will also depend on the existence of groups willing §3{to risk}§ long and dangerous voyages with little or no hope of returning. It would take spaceships §4{traveling}§ at 1 percent of the speed of light more than four hundred years to reach the Alpha Centauri system. But if they spread out from there at a similar rate, they could settle star systems throughout the Milky Way within one hundred million years, §5{which}§ is just a bit longer than the span of time since dinosaurs ruled our Earth.",
+     answer:2, explain:"hibernations를 뒤에서 수식하는 분사 자리인데 원형 last가 쓰였다. hibernations가 '지속되는' 것이므로 능동 분사 lasting이 되어야 한다."},
+    {text:"[2024년 9월 학평 29번 · 정답률 50%]  From an organizational viewpoint, one of the most fascinating examples of how any organization may contain many different types of culture §1{is}§ to recognize the functional operations of different departments within the organization. The varying departments and divisions within an organization will inevitably view any given situation from their own biased and prejudiced perspective. A department and its members will acquire 'tunnel vision' which disallows them to see things as others see §2{them}§. The very structure of organizations can create conflict. The choice of §3{whether}§ the structure is 'mechanistic' or 'organic' can have a profound influence on conflict management. A mechanistic structure has a vertical hierarchy with many rules, many procedures, and many levels of management §4{involved}§ in decision-making. Organic structures are more horizontal in nature, §5{which}§ decision making is less centralized and spread across the plane of the hierarchy.",
+     answer:5, explain:"뒤에 명사(decision making)가 바로 이어지는 소유 관계이므로 which가 아니라 소유격 관계대명사 whose가 되어야 한다."},
+    {text:"[2023년 9월 학평 29번 · 정답률 37%]  There is a reason the title 'Monday Morning Quarterback' exists. Just read the comments on social media from fans discussing the weekend's games, and you quickly see how many people believe they could play, coach, and manage sport teams more §1{successfully}§ than those on the field. This goes for the boardroom too. Students and professionals with years of training and specialized degrees in sport business may also find themselves §2{being given}§ advice on how to do their jobs from friends, family, or even total strangers without any expertise. Executives in sport management §3{have}§ decades of knowledge and experience in their respective fields. However, many of them face criticism from fans and community members telling §4{themselves}§ how to run their business. Very few people tell their doctor how to perform surgery or their accountant how to prepare their taxes, but many people provide feedback on §5{how}§ sport organizations should be managed.",
+     answer:4, explain:"비판을 가하는 주체는 fans and community members이고, 그 비판을 받아 운영법을 듣는 대상은 경영진(them)이다. 주어와 목적어가 다른 대상이므로 themselves가 아니라 them이 되어야 한다."},
+    {text:"[2023년 6월 학평 29번 · 정답률 43%]  Research psychologists often work with self-report data, made up of participants' verbal accounts of their behavior. This is the case §1{whenever}§ questionnaires, interviews, or personality inventories are used to measure variables. Self-report methods can be quite useful. They take advantage of the fact that people have a unique opportunity to observe §2{themselves}§ full-time. However, self-reports can be plagued by several types of distortion. One of the most problematic of these distortions is the social desirability bias, which is a tendency to give §3{socially}§ approved answers to questions about oneself. Subjects who are influenced by this bias work overtime trying to create a favorable impression, especially when subjects §4{ask}§ about sensitive issues. For example, many survey respondents will report that they voted in an election or §5{gave}§ to a charity when in fact it is possible to determine that they did not.",
+     answer:4, explain:"subjects는 '질문을 받는' 대상이므로 수동태 are asked가 되어야 한다. 능동형 ask는 오류."},
+    {text:"[2023년 4월 학평 29번 · 정답률 31%]  Providing feedback to students is a critical task for teachers. General psychology has shown that knowledge of results is necessary for improving a skill. Advanced musicians are able to self-critique their performances, but developing music students §1{rely}§ on teachers to supply evaluative feedback. The most constructive feedback is that §2{which}§ expresses the discrepancies between a student's performance of a piece of music and an optimal version. Expert teachers give more detailed feedback than general appraisals, and music educators generally recognize that more specific teacher feedback facilitates student performance improvement. Researchers also have explored §3{whether}§ the feedback of effective teachers is more often positively or negatively expressed, that is, constituting praise or criticism. One might intuitively think that positive comments are more §4{motivated}§ to students and, as a result, are more associated with effective teaching. The research, however, paints a slightly different picture. Although positive feedback is §5{likely}§ more helpful with younger learners and in one-on-one instruction, more advanced music students seem to accept and benefit from greater levels of criticism in lessons.",
+     answer:4, explain:"comments(칭찬)는 감정을 느끼는 대상이 아니라 학생에게 동기를 유발하는 주체이므로 motivated가 아니라 motivating이 되어야 한다."},
+    {text:"[2023년 3월 학평 29번 · 정답률 44%]  From the 8th to the 12th century CE, while Europe suffered the perhaps overdramatically named Dark Ages, science on planet Earth could be found almost §1{exclusively}§ in the Islamic world. This science was not exactly like our science today, but it was surely antecedent to §2{it}§ and was nonetheless an activity aimed at knowing about the world. Muslim rulers granted scientific institutions tremendous resources, such as libraries, observatories, and hospitals. Great schools in all the cities §3{covering}§ the Arabic Near East and North Africa (and even into Spain) trained generations of scholars. Almost every word in the modern scientific lexicon that begins with the prefix 'al' §4{owes}§ its origins to Islamic science — algorithm, alchemy, alcohol, alkali, algebra. And then, just over 400 years after it started, it ground to an apparent halt, and it would be a few hundred years later, give or take, before §5{that}§ we would today unmistakably recognize as science appeared in Europe — with Galileo, Kepler, and a bit later, Newton.",
+     answer:5, explain:"선행사 없이 '우리가 오늘날 과학이라고 인식하는 것'이라는 의미이므로 that이 아니라 선행사를 포함하는 관계대명사 what이 되어야 한다."},
+    {text:"[2021년 9월 학평 29번 · 정답률 49%]  An economic theory of Say's Law holds that everything that's made will get sold. The money from anything that's produced is used to §1{buy}§ something else. There can never be a situation §2{which}§ a firm finds that it can't sell its goods and so has to dismiss workers and close its factories. Therefore, recessions and unemployment are impossible. Picture the level of spending like the level of water in a bath. Say's Law applies §3{because}§ people use all their earnings to buy things, but what happens if people don't spend all their money, saving some of it §4{instead}§? Savings are a 'leakage' of spending from the economy. You're probably imagining the water level now falling, so there's less spending in the economy. That would mean firms producing less and §5{dismissing}§ some of their workers.",
+     answer:2, explain:"situation 뒤에 이미 완전한 절(a firm finds that ~)이 이어지므로 관계대명사 which 단독으로는 쓸 수 없고 관계부사 in which(또는 where)가 되어야 한다."},
+    {text:"[2021년 3월 학평 29번 · 정답률 35%]  While reflecting on the needs of organizations, leaders, and families today, we realize that one of the unique characteristics §1{is}§ inclusivity. Why? Because inclusivity supports §2{what}§ everyone ultimately wants from their relationships: collaboration. Yet the majority of leaders, organizations, and families are still using the language of the old paradigm in which one person — typically the oldest, most educated, and/or wealthiest — makes all the decisions, and their decisions rule with little discussion or inclusion of others, §3{resulting}§ in exclusivity. Today, this person could be a director, CEO, or other senior leader of an organization. There is no need for others to present their ideas because they are considered §4{inadequate}§. Yet research shows that exclusivity in problem solving, even with a genius, is not as effective as inclusivity, §5{which}§ everyone's ideas are heard and a solution is developed through collaboration.",
+     answer:5, explain:"which 뒤에 이미 완전한 절(everyone's ideas are heard ~)이 이어지므로 관계대명사 which가 아니라 관계부사 역할의 in which가 되어야 한다."},
+    {text:"[2018년 9월 모평 29번 · 정답률 43%]  Not all organisms are able to find sufficient food to survive, so starvation is a kind of disvalue often found in nature. It also is part of the process of selection §1{by which}§ biological evolution functions. Starvation helps filter out those less fit to survive, those less resourceful in finding food for §2{themselves}§ and their young. In some circumstances, it may pave the way for genetic variants §3{to take}§ hold in the population of a species and eventually allow the emergence of a new species in place of the old one. Thus starvation is a disvalue that can help make §4{possible}§ the good of greater diversity. Starvation can be of practical or instrumental value, even as it is an intrinsic disvalue. §5{What}§ some organisms must starve in nature is deeply regrettable and sad. The statement remains implacably true, even though starvation also may sometimes subserve ends that are good.",
+     answer:5, explain:"'어떤 생물이 굶주려야만 한다는 것'이라는 완전한 절이 이어지므로, 불완전절을 요구하는 what이 아니라 동격의 접속사 That이 되어야 한다."},
+    {text:"[2018년 6월 학평 28번 · 정답률 35%]  Plastic is extremely slow to degrade and tends to float, §1{which}§ allows it to travel in ocean currents for thousands of miles. Most plastics break down into smaller and smaller pieces when exposed to ultraviolet (UV) light, §2{forming}§ microplastics. These microplastics are very difficult to measure once they are small enough to pass through the nets typically used to collect §3{themselves}§. Their impacts on the marine environment and food webs are still poorly understood. These tiny particles are known to be eaten by various animals and to get into the food chain. Because most of the plastic particles in the ocean §4{are}§ so small, there is no practical way to clean up the ocean. One would have to filter enormous amounts of water to collect a §5{relatively}§ small amount of plastic.",
+     answer:3, explain:"그물이 '수거하는' 대상은 그물 자신이 아니라 미세플라스틱이므로 재귀대명사 themselves가 아니라 them이 되어야 한다."},
+    {text:"[2018년 6월 모평 28번 · 정답률 41%]  Humans are so averse to feeling that they're being cheated §1{that}§ they often respond in ways that seemingly make little sense. Behavioral economists — the economists who actually study §2{what}§ people do as opposed to the kind who simply assume the human mind works like a calculator — have shown again and again that people reject unfair offers even if §3{it}§ costs them money to do so. The typical experiment uses a task called the ultimatum game. It's pretty straightforward. One person in a pair is given some money — say $10. She then has the opportunity to offer some amount of it to her partner. The partner only has two options. He can take what's offered or §4{refused}§ to take anything. There's no room for negotiation; that's why it's called the ultimatum game. What typically happens? Many people offer an equal split to the partner, §5{leaving}§ both individuals happy and willing to trust each other in the future.",
+     answer:4, explain:"조동사 can 뒤에 take와 등위접속사 or로 연결되는 병렬구조이므로 과거형 refused가 아니라 원형 refuse가 되어야 한다."},
+    {text:"[2018년 4월 학평 28번 · 정답률 42%]  According to Pierre Pica, understanding quantities approximately in terms of estimating ratios is a universal human intuition. In fact, humans who do not have numbers have no choice but §1{to see}§ the world in this way. By contrast, understanding quantities in terms of exact numbers is not a universal intuition; it is a product of culture. The precedence of approximations and ratios over exact numbers, Pica suggests, §2{is}§ due to the fact that ratios are much more important for survival in the wild than the ability to count. §3{Faced}§ with a group of spear-wielding adversaries, we needed to know instantly whether we were more or fewer of them than us. When we saw two trees we needed to know instantly §4{that}§ had more fruit hanging from it. In neither case was it §5{necessary}§ to enumerate every enemy or every fruit individually. The crucial thing was to be able to make quick estimates of the relative amounts.",
+     answer:4, explain:"'두 나무 중 어느 것에 열매가 더 많이 달렸는지'를 뜻하는 간접의문문이 필요하므로 that이 아니라 which가 되어야 한다."},
+    {text:"[2017년 6월 학평 28번 · 정답률 40%]  Cutting costs can improve profitability but only up to a point. Once a manufacturer cuts costs so deeply §1{that}§ doing so harms the product's quality, then the increased profitability will be shortlived. A better approach is to improve productivity. If businesses can get more production from the same number of employees, they're §2{basically}§ tapping into free money. They get more product to sell, and the price of each product falls. As long as the machinery or employee training §3{needed}§ for productivity improvements costs less than the value of the productivity gains, it's an easy investment for any business to make. Productivity improvements are as important to the economy as they §4{do}§ to the individual business that's making them. Productivity improvements generally raise the standard of living for everyone and §5{are}§ a good indication of a healthy economy.",
+     answer:4, explain:"비교 대상인 'are important'를 대신하는 대동사가 필요하므로 do가 아니라 are가 되어야 한다."},
+    {text:"[2016년 11월 학평 28번 · 정답률 20%]  Improved consumer water consciousness may be the cheapest way §1{to save}§ the most water, but it is not the only way consumers can contribute to water conservation. With technology progressing faster than ever before, there §2{are}§ plenty of devices that consumers can install in their homes to save more. More than 36 models of high-efficiency toilets are on the U.S. market today, some of §3{them}§ use less than 1.3 gallons per flush. Starting at $200, these toilets are affordable and can help the average consumer save hundreds of gallons of water per year. Appliances §4{officially}§ approved as most efficient are tagged with the Energy Star logo to alert the shopper. Washing machines with older ratings use 18 to 25 gallons of water per load, compared to newer, high-efficiency models that use 40 gallons. High-efficiency dishwashers save §5{even}§ more water. These machines use up to 50 percent less water than older models.",
+     answer:3, explain:"콤마 뒤에서 앞 내용을 이어 설명해야 하는데 접속사나 관계사 없이 them이 왔다. them이 아니라 계속적 용법의 of which가 되어야 한다."},
+    {text:"[2016년 9월 학평 28번 · 정답률 40%]  Before the washing machine was invented, people used washboards to scrub, or they carried their laundry to riverbanks and streams, §1{where}§ they beat and rubbed it against rocks. Such backbreaking labor is still commonplace in parts of the world, but for most homeowners the work is now done by a machine that §2{automatically}§ regulates water temperature, measures out the detergent, washes, rinses, and spin-dries. With §3{its}§ electrical and mechanical system, the washing machine is one of the most technologically advanced of a large household appliance. It not only cleans clothes, but it §4{is}§ so with far less water, detergent, and energy than washing by hand requires. §5{Compared}§ with the old washers that squeezed out excess water by feeding clothes through rollers, modern washers are indeed an electrical-mechanical phenomenon.",
+     answer:4, explain:"앞의 일반동사 cleans를 대신하는 대동사가 필요하므로 is가 아니라 does가 되어야 한다."},
+    {text:"[2016년 6월 모평 28번 · 정답률 50%]  If an animal is innately programmed for some type of behaviour, then there §1{are}§ likely to be biological clues. It is no accident that fish have bodies which are streamlined and smooth, §2{with}§ fins and a powerful tail. Their bodies are structurally adapted for moving fast through the water. Similarly, if you found a dead bird or mosquito, you could guess by looking at §3{its}§ wings that flying was its normal mode of transport. However, we must not be over-optimistic: biological clues are not essential. The extent to which they are §4{finding}§ varies from animal to animal and from activity to activity. For example, it is impossible to guess from their bodies that birds make nests, and, sometimes, animals behave in a way quite contrary to §5{what}§ might be expected from their physical form: ghost spiders have tremendously long legs, yet they weave webs out of very short threads. To a human observer, their legs seem a great hindrance as they spin and move about the web.",
+     answer:4, explain:"생물학적 단서가 '발견되는' 것이므로 능동 finding이 아니라 수동 found가 되어야 한다."},
+    {text:"[2013년 9월 학평 27번 · 정답률 44%]  Grateful people are inclined to make healthy decisions. Life and sports present many situations §1{where}§ critical and difficult decisions have to be made. Selfish adults or kids do not make sound decisions as well as §2{are}§ grateful people. This includes the decision to be self-motivated. Frustrated parents ask: 'How do I motivate my child to do sports or continue in sports? Sometimes my child gets §3{discouraged}§ and does not want to put the required effort into his or her sports? What can I, as a parent, do or say to help?' It is difficult and almost impossible §4{to motivate}§ kids or adults who are centered on their own narrow selfish desires. However, kids and adults who live as grateful people are able to motivate §5{themselves}§. They also welcome suggestions from others, even parents.",
+     answer:2, explain:"비교 대상인 일반동사 make(sound decisions)를 대신하는 대동사가 필요하므로 are가 아니라 do가 되어야 한다(as do grateful people)."},
+    {text:"[2013년 6월 모평 27번 · 정답률 37%]  When you have ideas you like, you often think everyone else should feel the same way. If they don't, it very often §1{becomes}§ a matter of 'they just don't understand!' If a colleague around you doesn't understand your idea, or its potential, you are §2{being given}§ an important message. Maybe your view of a problem §3{that}§ you think you are solving is not shared by other coworkers? If your colleague cannot see it, your consumers may not §4{either}§. Think about it. Make constant efforts until everyone you explain your idea to understands it. This is all to do with §5{find}§ simple solutions to our daily communication problems.",
+     answer:5, explain:"전치사 with의 목적어 자리이므로 동명사 finding이 되어야 한다. 원형 find는 전치사의 목적어로 쓸 수 없다."},
+    {text:"[2013년 3월 학평 27번 · 정답률 35%]  How you address your professors depends on many factors such as age, college culture, and their own preference. Some teachers will ask you §1{to call}§ them by their first names, especially if they're relatively young. They enjoy the informal atmosphere §2{generated}§ by having everyone in the class on the same level. Some colleges, in fact, pride themselves on having all their faculty and students on a first-name basis. But beware: one of the surest ways to upset professors §3{is}§ to call them by their first names against their wishes. Most professors see themselves in a position of professional authority over their students §4{whom}§ they earned by many years of study. They no more want to be called John or Maria than §5{does}§ your average physician.",
+     answer:4, explain:"관계대명사가 가리키는 것은 바로 앞의 students가 아니라 authority(여러 해의 공부로 얻은 것은 '권위')이므로, 사람을 받는 whom이 아니라 사물을 받는 which가 되어야 한다."}
+  ],
+  box:[
+    {text:"Like life in traditional society, but unlike other team sports, baseball is not governed by the clock. A football game is comprised of exactly sixty minutes of play, a basketball game forty or forty-eight minutes, but baseball has no set length of time within which the game must be completed. The pace of the game is therefore leisurely and (A)[unhurried/unhurriedly], like the world before the discipline of measured time, deadlines, schedules, and wages paid by the hour. Baseball belongs to the kind of world (B)[which/in which] people did not say, 'I haven't got all day.' Baseball games do have all day to be played. But that does not mean that they can go on forever. Baseball, like traditional life, proceeds according to the rhythm of nature, specifically the rotation of the Earth. During its first half century, games were not played at night, which meant that baseball games, like the traditional work day, (C)[ending/ended] when the sun set. [2016년 9월 모평 28번 · 정답률 39%]",
+     choices:["unhurried – in which – ended","unhurried – which – ending","unhurriedly – which – ended","unhurriedly – which – ending","unhurriedly – in which – ended"], answer:0,
+     explain:"(A) leisurely와 and로 이어지는 형용사 병렬이므로 unhurried. (B) the kind of world 뒤에 완전절이 이어지므로 in which. (C) 문장의 정동사 자리이므로 능동 과거형 ended(경기가 '끝났다')."},
+    {text:"If we create a routine, we don't have to expend precious energy every day prioritizing everything. We must simply expend a small amount of initial energy to create the routine, and then all that is left to do is follow it. There is a huge body of scientific research to explain the mechanism (A)[which/by which] routine enables difficult things to become easy. One simplified explanation is that as we repeatedly do a certain task the neurons, or nerve cells, (B)[make/making] new connections through communication gateways called 'synapses.' With repetition, the connections strengthen and it becomes easier for the brain to activate them. For example, when you learn a new word it takes several repetitions at various intervals for the word to be mastered. To recall the word later you will need to activate the same synapses until eventually you know the word without consciously thinking about (C)[it/them]. [2015년 11월 학평 28번 · 정답률 45%]",
+     choices:["which – make – them","which – making – them","by which – make – them","by which – making – it","by which – make – it"], answer:4,
+     explain:"(A) mechanism 뒤에 완전절이 이어지므로 by which. (B) 종속절의 정동사 자리(주어 the neurons)이므로 make. (C) 단수 the word를 가리키므로 it."},
+    {text:"It is easier for right-handed people to push buttons on the right through holes on the left. This is why men's clothes (A)[have/having] buttons on the right since most people are right-handed. But what about women, who are also mostly right-handed? When buttons first came to be used, they were very expensive and were worn primarily by the rich. Women in that class did not usually dress (B)[them/themselves] but were dressed by maids. Since a maid would be facing a woman she was dressing, dressmakers put the buttons on the maid's right, and this, of course, put them on the woman's left (C)[which/where] they have remained. [2013년 9월 학평 31번 · 정답률 47%]",
+     choices:["have – them – which","having – themselves – which","have – themselves – where","having – them – where","have – themselves – which"], answer:2,
+     explain:"(A) 관계부사 why 뒤 완전절의 정동사이므로 have. (B) 주어 women과 목적어가 같은 대상이므로 재귀대명사 themselves. (C) 완전절이 이어지므로 관계부사 where."},
+    {text:"You cannot fit objects (A)[that/what] occupied a 5,000-square-foot house in a 2,000-square-foot condominium. If you are moving to a smaller condominium, that's great. Get rid of your belongings and (B)[buy/buying] the condominium. It is fruitless to look at condominiums when you have spent the past 20-odd years in a large house and then try to move all of your life into the smaller investment. To do so often leads to frustration because what you wind up purchasing is an expensive warehouse for your furniture, and that is usually the wrong investment. If you want to change your lifestyle, you must accept the consequences of that decision. Throwing things out only (C)[hurt/hurts] for a little while. [2013년 9월 모평 27번 · 정답률 38%]",
+     choices:["that – buy – hurt","that – buy – hurts","what – buy – hurts","what – buying – hurts","what – buying – hurt"], answer:1,
+     explain:"(A) objects가 선행사, occupied의 주어 자리가 빠진 불완전절 → that. (B) 명령문의 병렬 원형동사(Get rid of ~ and buy). (C) 동명사 주어(Throwing things out)는 단수 취급 → hurts."},
+    {text:"It had long been something of a mystery where, and on what, the northern fur seals of the eastern Pacific feed during the winter, (A)[when/which] they spend off the coast of North America from California to Alaska. There is no evidence that they are feeding to any great extent on sardines, mackerel, or other commercially important fishes. Presumably four million seals could not compete with commercial fishermen for the same species without the fact (B)[being/is] known. But there is some evidence on the diet of the fur seals, and it is highly significant. Their stomachs have yielded the bones of a species of fish that has never been seen alive. Indeed, not even its remains (C)[has/have] been found anywhere except in the stomachs of seals. [2013년 9월 모평 27번 · 정답률 43%]",
+     choices:["when – is – have","when – being – have","which – being – have","which – being – has","which – is – has"], answer:2,
+     explain:"(A) 뒤 절 they spend off the coast에서 spend의 목적어 자리가 비어 불완전절이므로 which. (B) 전치사 without의 목적어로 동명사구가 필요하므로 being known. (C) 주어 remains(복수) → have."},
+    {text:"The lizards that climb walls and ceilings do not tend to fall off. But it is not (A)[why/because] they have great suction — as a matter of fact, they are not really using suction at all. Here is how the feet work: on the bottom are dozens and dozens of tiny grooves, which you can see if you have ever looked closely at a lizard in a terrarium. On each of those little grooves you can see, there are dozens more (B)[that/what] are not visible to the naked eye. And on each of those dozens of grooves (C)[is/are] hundreds, if not thousands, of hairlike bumps. Now, if you take a microscopic look at even the smoothest surface, you will see it is covered with microscopic pits, bumps, and grooves. [2013년 7월 학평 31번 · 정답률 30%]",
+     choices:["why – that – is","why – what – is","because – that – are","because – what – are","because – what – is"], answer:2,
+     explain:"(A) 뒤에 완전절이 이어지는 이유의 접속사이므로 because. (B) dozens more(선행사, 사물)+주격 관계대명사 that. (C) 장소 부사구 도치 구문의 진짜 주어 hundreds(복수) → are."},
+    {text:"Many businesses send free gifts or samples through the mail, or allow customers to try and test new products in order to persuade future customers to (A)[purchase/purchasing] them. Charity organizations, too, use the give-and-take approach by perhaps sending target persons a package of Christmas cards or calendars. Those who receive the package (B)[feel/feels] obligated to send something in return. So powerful is this sense of obligation to return the favor that it affects our daily lives very much. (C)[Inviting/Invited] to a dinner party, we feel under pressure to invite our hosts to one of ours. If someone gives us a gift, we need to return it in kind. [2013년 6월 학평 31번 · 정답률 31%]",
+     choices:["purchase – feel – Inviting","purchase – feel – Invited","purchase – feels – Invited","purchasing – feels – Inviting","purchasing – feel – Inviting"], answer:1,
+     explain:"(A) to try, to test와 병렬을 이루는 원형부정사 purchase. (B) 주어 Those(복수) → feel. (C) 분사구문의 의미상 주어 we가 초대'받는' 대상이므로 수동 Invited."},
+    {text:"One of the greatest ways to cultivate a possibility mind-set (A)[is/are] to prompt yourself to dream one size bigger than you normally do. Let's face it: Most people dream too small. They don't think big enough. Henry Curtis advises, 'Make your plans as fantastic as you like (B)[because/because of] twenty-five years from now, they will not seem so special. Make your plans ten times as great as you first planned, and twenty-five years from now you will wonder why you did not make them fifty times as great.' If you push yourself to dream more expansively and to make your goals at least a step beyond what makes you (C)[comfortable/comfortably], you will be forced to grow. And it will set you up to believe in greater possibilities. [2013년 4월 학평 31번 · 정답률 47%]",
+     choices:["is – because – comfortable","is – because of – comfortably","is – because – comfortably","are – because – comfortable","are – because of – comfortably"], answer:0,
+     explain:"(A) One(단수)이 주어 → is. (B) 뒤에 절(주어+동사)이 이어지므로 접속사 because. (C) make+O+C(형용사 보어) 구조이므로 comfortable."},
+    {text:"A stylist can just do the cut, take the money and (A)[tell/telling] the customer that she got exactly what she wanted. But a good stylist knows that what a customer thinks she wants (B)[is/to be] often not what she really wants. The 'look' in that picture will frequently not be the 'look' on this particular customer. Good stylists know that their job is not just perfectly executing the cut they were asked for. They know (C)[how/what] the face and bone structure and the condition of the hair would change the look in the client's favorite picture. [2013년 3월 학평 32번 · 정답률 43%]",
+     choices:["tell – is – how","tell – to be – what","tell – is – what","telling – to be – how","telling – is – what"], answer:0,
+     explain:"(A) do, take와 등위접속사 and로 이어지는 원형동사 병렬 → tell. (B) what절 주어는 단수 취급 → is. (C) '얼굴형과 골격, 머릿결 상태가 어떻게 그 모습을 바꿀지'라는 완전절을 이끄는 간접의문문 how."},
+    {text:"Australia is a large country with a population of twenty million people, about 85 percent of whom live in the coastal cities. Sydney and Melbourne are the largest cities, but Canberra, with fewer than half a million people, (A)[is/are] the nation's capital. Native people make up about 2.4 percent of the population. The birth rate is low at 1.8 children per woman, and the number of elderly people is growing (B)[rapid/rapidly]. Since 2000, many Asian and European immigrants have been crowding into this country. Australia's population would be in decline without the 100,000 immigrants (C)[who/what] arrive each year. [2013년 3월 학평 31번 · 정답률 45%]",
+     choices:["is – rapid – who","is – rapidly – who","is – rapidly – what","are – rapid – what","are – rapidly – who"], answer:1,
+     explain:"(A) 삽입구(with ~ people)를 지우면 주어는 단수 Canberra → is. (B) 동사 growing을 수식하는 부사 rapidly. (C) 사람 선행사 immigrants + 주격 관계대명사 who."},
+    {text:"Although various state-law bans and nationwide campaigns to prevent texting from behind the wheel, the number of people texting while driving is actually on the rise, a new study suggests. According to the Traffic Safety Administration(TSA), the percentage of drivers who send texts and use mobile devices while on the road (B)[have/has] jumped from 0.6% in 2009 to 0.9% in 2010. The news comes as automakers and lawmakers try to bring more awareness to the dangers of distracted driving. In fact, the Safety Board is working to make cellphone use from talking hands-free to texting (C)[illegal/illegally] in all states. The TSA said that drivers using mobile devices in any situation are four times more likely to have an accident and injure themselves or others. [2012년 3월 학평 25번 · 정답률 31%]",
+     choices:["Although – have – illegally","Although – has – illegal","Despite – have – illegal","Despite – has – illegally","Despite – has – illegal"], answer:4,
+     explain:"(A) 뒤에 명사구(bans and campaigns)만 이어지므로 전치사 Despite(Although는 절이 필요). (B) 주어 the percentage(단수) → has. (C) make+O+C(형용사 보어) 구조이므로 illegal."},
+    {text:"When I got back to my hotel room after taking a lot of pictures, I was eager to (A)[upload/uploading] the photos to my blog. I plugged my digital camera into my computer, and when the process was complete, no photos were there! Worse, the photos on my memory card were gone. When I told my friend what had happened, he sent me a certain program designed to recover photos that (B)[was/were] deleted from flash memory cards by mistake. I tried the program. It filled a folder with most of the photos I had lost. I hope you will never have an occasion to use this kind of program. But you need one to have lost files (C)[to recover/recovered] in case things go wrong. [2011년 11월 학평 21번 · 정답률 43%]",
+     choices:["upload – were – recovered","upload – was – recovered","upload – were – to recover","uploading – was – recovered","uploading – were – to recover"], answer:0,
+     explain:"(A) be eager to R(~하기를 열망하다). (B) 선행사 photos(복수) → were. (C) have+O+p.p.(파일이 '회수되게' 하다, 수동 관계) → recovered."},
+    {text:"Most amateur speakers do not understand that when they are on stage they are actors and actresses. Most do have some idea that they should speak with more power on stage than they (A)[are/do] on a one-to-one basis, but they do not realize that their verbal eloquence must be matched with a nonverbal eloquence. If you move your hand two inches to emphasize a point when (B)[speaking/to speak] to one person, you may have to move it as much as two feet in front of a large audience. The general rule is, the bigger the audience, the bigger the motion. This is so difficult for people, especially businesspeople whose general style is that of understatement, (C)[which/that] they should take an acting course before they take a speech course. [2011년 10월 학평 22번 · 정답률 49%]",
+     choices:["are – speaking – which","are – to speak – which","do – to speak – that","do – to speak – which","do – speaking – that"], answer:4,
+     explain:"(A) 일반동사 speak를 대신하는 대동사이므로 do. (B) when 뒤 분사구문(생략된 주어 you가 '말하는 중') → speaking. (C) so + 형용사 + that(너무 ~해서 ~하다) 구문."},
+    {text:"You have to pay close attention to someone's normal pattern in order to notice a deviation from it when he or she lies. Sometimes the variation is as (A)[subtle/subtly] as a pause. Other times it is obvious and abrupt. I recently saw a news interview with an acquaintance (B)[who/whom] I was certain was going to lie about a few particularly sensitive issues, and lie she did. During most of her interview she was calm and direct, but when she started lying, her manner changed dramatically: she threw her head back, laughed in 'disbelief,' and shook her head back and forth. It is true that the questions (C)[dealt/dealing] with very personal issues, but I have found that in general, no matter how touchy the question, if a person is telling the truth his or her manner will not change significantly or abruptly. [2011년 9월 학평 20번 · 정답률 49%]",
+     choices:["subtle – who – dealt","subtle – who – dealing","subtle – whom – dealt","subtly – who – dealt","subtly – whom – dealing"], answer:0,
+     explain:"(A) is의 보어 자리(as + 형용사 + as) → subtle. (B) 삽입절 I was certain을 지우면 who가 was going to lie의 주어 → who. (C) 주어 the questions(복수)가 '다룬다'는 능동 의미의 과거형 dealt."},
+    {text:"Today's black tires owe (A)[its/their] color to an accidental discovery. In 1885, a rubber tire company decided to try black tires, (B)[thinking/thought] that they might not show dirt. They added carbon black coloring to the rubber mixture. To their surprise, they discovered (C)[that/what] the carbon-colored rubber tires were five times more durable than the uncolored ones. [2011년 6월 학평 21번 · 정답률 43%]",
+     choices:["its – thought – that","its – thinking – what","their – thought – that","their – thought – what","their – thinking – that"], answer:4,
+     explain:"(A) 주어 tires(복수)에 맞춘 소유격 their. (B) 분사구문의 의미상 주어(the company)가 '생각하며' 결정한 능동 관계 → thinking. (C) discovered의 목적어로 완전한 절이 이어지므로 접속사 that."},
+    {text:"Nevertheless, they begin to believe (A)[what/that] they are saying. When there is no compelling external explanation for one's words, saying becomes believing. Tory Higgins and his colleagues had university students read a personality description of someone and then (B)[summarize/summarized] it for someone else who was believed either to like or to dislike this person. The students wrote a more positive description when the recipient liked the person. Having said positive things, they also then liked the person more themselves. (C)[Asked/Asking] to recall what they had read, they remembered the description as being more positive than it was. [2011년 6월 모평 20번 · 정답률 50%]",
+     choices:["what – summarize – Asked","what – summarize – Asking","what – summarized – Asked","that – summarized – Asking","that – summarized – Asked"], answer:0,
+     explain:"(A) saying의 목적어가 빠진 불완전절이므로 선행사를 포함하는 what. (B) read와 and로 이어지는 병렬구조이므로 원형 summarize. (C) 주절 주어 they가 '요청받아' 회상하는 수동 관계이므로 Asked."},
+    {text:"For thousands of years, people have looked up at the night sky and looked at the moon. They wondered (A)[if/what] the moon was made of. They wanted to know how big it was and how far away it was. One of the most interesting questions was 'Where did the moon come from?' No one knew for sure. Scientists developed (B)[many/much] different theories, or guesses, but they could not prove that their ideas were correct. Then, between 1969 and 1972, the United States sent astronauts to the moon for their studying the moon and (C)[returned/returning] to Earth with rock samples. [2011년 3월 학평 20번 · 정답률 41%]",
+     choices:["if – many – returning","if – much – returned","what – many – returned","what – much – returned","what – many – returning"], answer:4,
+     explain:"(A) '무엇으로 만들어졌는지'라는 의미로 made of의 목적어가 빠진 불완전절 → what. (B) 가산명사 theories를 수식 → many. (C) 전치사 for의 목적어로 studying과 병렬을 이루는 동명사 returning."},
+    {text:"The earliest map is thought to have been made in 7000 B.C. in an ancient city that was in (A)[what/which] is now present-day Turkey. The map was painted on a wall and showed the city from above. Although its exact function is unknown, the discovery makes one thing certain: humans have long desired to (B)[represent/be represented] their physical surroundings. Ancient maps were not conceived through the same processes as modern maps. While today's map makers use advanced computers and satellite imagery, early map makers relied on literature to create maps. For example, Homer's Iliad, which contained descriptions of actual places, (C)[was/were] the basis for many early maps. [2010년 10월 학평 21번 · 정답률 33%]",
+     choices:["what – represent – was","what – be represented – was","which – represent – was","which – be represented – were","which – represent – were"], answer:0,
+     explain:"(A) '지금의 터키인 곳'이라는 의미로 선행사 없이 쓰는 what(보어 자리가 빠진 불완전절). (B) desire to represent(주변환경을 '묘사하기를' 원하는 능동 관계). (C) 주어 Homer's Iliad(단수, 삽입절 무시) → was."}
+  ]
+}
+];
+
+// topic 02 (participles) advanced set is unusually large: extra 1등급 structure items appended
+U[1].structure.push(
+  {q:"§b§ that the sample might not adequately represent the population, the researchers interpreted the findings cautiously.",
+   choices:["Having warned","Having been warned","Warning","Having been warning"], answer:1,
+   explain:"researchers가 경고를 '받은' 뒤 해석했으므로 완료+수동 → Having been warned."},
+  {q:"§b§ by discrepancies between the predicted and observed values, the team reexamined the coding procedure.",
+   choices:["Prompting","Prompted","Having prompted","Having been prompting"], answer:1,
+   explain:"team이 불일치에 의해 재검토하도록 '촉발된' 것이므로 수동 → Prompted."},
+  {q:"Not §b§ how the original data had been coded, the reviewers requested access to the raw files.",
+   choices:["knowing","known","having known","been known"], answer:0,
+   explain:"reviewers가 코딩 방식을 '알지 못하는' 능동 의미이므로 Not knowing."},
+  {q:"§b§ from the final analysis because of recording errors, the observations were reported separately in the appendix.",
+   choices:["Excluding","Excluded","Having excluded","To exclude"], answer:1,
+   explain:"observations가 분석에서 '제외된' 대상이므로 수동 분사구문 → Excluded."},
+  {q:"Weather §b§, data collection will continue outdoors tomorrow.",
+   choices:["permitting","permitted","permits","having permitted"], answer:0,
+   explain:"Weather permitting(=if the weather permits)은 독립분사구문의 대표적 관용 표현이다."},
+  {q:"§b§ from the response pattern, participants relied more heavily on prior beliefs than on numerical evidence.",
+   choices:["Judging","Judged","Having judged by","Being judged"], answer:0,
+   explain:"Judging from ~은 '~로 판단하건대'라는 뜻의 관용적 독립분사구문이다."}
+);
+U[1].passages.push(
+  {text:"§1{Walking through the archive}§, several documents §2{containing}§ unpublished correspondence immediately attracted the historian's attention. The letters, §3{written}§ during a period of political upheaval, included references §4{suggesting}§ that the official account may have omitted events §5{considered}§ too controversial at the time.",
+   answer:1, explain:"① 분사구문의 의미상 주어는 원칙적으로 주절 주어와 같아야 하는데, '문서가 걸어다닌다'는 어색한 관계(dangling modifier)가 생긴다. 'Walking through the archive, the historian noticed several documents ~'처럼 주절 주어를 historian으로 바꾸어야 한다."},
+  {text:"§1{There being}§ no reliable baseline measure, the researchers refrained from making strong causal claims. Instead, they reported patterns §2{observing}§ across multiple data sources, §3{distinguishing}§ correlation from causation and §4{explicitly acknowledging}§ factors that may have remained §5{uncontrolled}§.",
+   answer:1, explain:"② patterns가 여러 데이터 소스에서 '관찰된' 대상이므로 수동 observed로 고쳐야 한다."}
+);
+
+// ---------- rendering ----------
+const KEY_PROGRESS = "suneung-grammar-progress-v1";
+function loadProgress(){ try{ return JSON.parse(localStorage.getItem(KEY_PROGRESS)) || {}; }catch(e){ return {}; } }
+function saveProgress(p){ try{ localStorage.setItem(KEY_PROGRESS, JSON.stringify(p)); }catch(e){} }
+let progress = loadProgress();
+
+function totalItems(unit){ return unit.structure.length + unit.passages.length + (unit.box?unit.box.length:0); }
+function doneItems(unit){
+  const p = progress[unit.id] || {};
+  return Object.keys(p).length;
+}
+
+let currentId = U[0].id;
+
+function renderNav(){
+  const nav = document.getElementById("nav");
+  const mob = document.getElementById("mobileTabs");
+  nav.innerHTML = "";
+  mob.innerHTML = "";
+  U.forEach(unit=>{
+    const btn = document.createElement("button");
+    btn.className = "topic-btn";
+    btn.type = "button";
+    btn.setAttribute("aria-current", String(unit.id===currentId));
+    btn.innerHTML = '<span class="rank">'+unit.rank+'</span>'
+      + '<span class="meta"><span class="t">'+unit.title+'</span><span class="r">'+unit.rate+'</span></span>'
+      + '<span class="prog">'+doneItems(unit)+'/'+totalItems(unit)+'</span>';
+    btn.addEventListener("click", ()=>{ currentId = unit.id; render(); window.scrollTo({top:0}); });
+    nav.appendChild(btn);
+
+    const mb = document.createElement("button");
+    mb.type = "button";
+    mb.textContent = unit.rank+". "+unit.title;
+    mb.setAttribute("aria-current", String(unit.id===currentId));
+    mb.addEventListener("click", ()=>{ currentId = unit.id; render(); window.scrollTo({top:0}); });
+    mob.appendChild(mb);
+  });
+}
+
+function parseBlank(str){
+  // "text before §b§ text after" -> [before, after] for single-blank structure stems
+  const parts = str.split("§b§");
+  const wrap = document.createElement("span");
+  wrap.appendChild(document.createTextNode(parts[0]));
+  const em = document.createElement("em");
+  em.textContent = "______";
+  wrap.appendChild(em);
+  wrap.appendChild(document.createTextNode(parts[1]));
+  return wrap;
+}
+
+function renderStructureCard(item, idx, unit){
+  const card = document.createElement("div");
+  card.className = "card q-card";
+  const top = document.createElement("div");
+  top.className = "q-top";
+  const qi = document.createElement("span");
+  qi.className = "q-idx";
+  qi.textContent = (idx+1)+".";
+  const stem = document.createElement("span");
+  stem.className = "q-stem";
+  stem.appendChild(parseBlank(item.q));
+  top.appendChild(qi); top.appendChild(stem);
+  card.appendChild(top);
+
+  const choicesEl = document.createElement("div");
+  choicesEl.className = "choices";
+  const letters = ["A","B","C","D"];
+  const explain = document.createElement("div");
+  explain.className = "explain";
+
+  const key = "s"+idx;
+  const prev = (progress[unit.id]||{})[key];
+
+  item.choices.forEach((c,ci)=>{
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "choice";
+    b.innerHTML = '<span class="k">'+letters[ci]+'</span><span class="v">'+c+'</span>';
+    if(prev!==undefined){
+      b.disabled = true;
+      if(ci===item.answer) b.classList.add("is-correct");
+      else if(ci===prev) b.classList.add("is-wrong");
+    }
+    b.addEventListener("click", ()=>{
+      if(!progress[unit.id]) progress[unit.id] = {};
+      progress[unit.id][key] = ci;
+      saveProgress(progress);
+      Array.from(choicesEl.children).forEach((el,i2)=>{
+        el.disabled = true;
+        if(i2===item.answer) el.classList.add("is-correct");
+        else if(i2===ci) el.classList.add("is-wrong");
+      });
+      showExplain();
+      renderNav();
+    });
+    choicesEl.appendChild(b);
+  });
+  card.appendChild(choicesEl);
+
+  function showExplain(){
+    const chosen = (progress[unit.id]||{})[key];
+    const ok = chosen===item.answer;
+    explain.innerHTML = '<span class="tag '+(ok?'ok':'no')+'">'+(ok?'정답':'오답')+'</span>'+item.explain;
+    explain.classList.add("show");
+  }
+  if(prev!==undefined) showExplain();
+  card.appendChild(explain);
+  return card;
+}
+
+function renderBoxCard(item, idx, unit){
+  const card = document.createElement("div");
+  card.className = "card q-card";
+  const top = document.createElement("div");
+  top.className = "q-top";
+  const qi = document.createElement("span");
+  qi.className = "q-idx";
+  qi.textContent = (idx+1)+".";
+  const stem = document.createElement("span");
+  stem.className = "q-stem";
+  stem.style.borderBottom = "none";
+  stem.textContent = item.text;
+  top.appendChild(qi); top.appendChild(stem);
+  card.appendChild(top);
+
+  const choicesEl = document.createElement("div");
+  choicesEl.className = "choices";
+  const nums = ["①","②","③","④","⑤"];
+  const explain = document.createElement("div");
+  explain.className = "explain";
+
+  const key = "x"+idx;
+  const prev = (progress[unit.id]||{})[key];
+
+  item.choices.forEach((c,ci)=>{
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "choice";
+    b.innerHTML = '<span class="k">'+nums[ci]+'</span><span class="v">'+c+'</span>';
+    if(prev!==undefined){
+      b.disabled = true;
+      if(ci===item.answer) b.classList.add("is-correct");
+      else if(ci===prev) b.classList.add("is-wrong");
+    }
+    b.addEventListener("click", ()=>{
+      if(!progress[unit.id]) progress[unit.id] = {};
+      progress[unit.id][key] = ci;
+      saveProgress(progress);
+      Array.from(choicesEl.children).forEach((el,i2)=>{
+        el.disabled = true;
+        if(i2===item.answer) el.classList.add("is-correct");
+        else if(i2===ci) el.classList.add("is-wrong");
+      });
+      showExplain();
+      renderNav();
+    });
+    choicesEl.appendChild(b);
+  });
+  card.appendChild(choicesEl);
+
+  function showExplain(){
+    const chosen = (progress[unit.id]||{})[key];
+    const ok = chosen===item.answer;
+    explain.innerHTML = '<span class="tag '+(ok?'ok':'no')+'">'+(ok?'정답':'오답')+'</span>'+item.explain;
+    explain.classList.add("show");
+  }
+  if(prev!==undefined) showExplain();
+  card.appendChild(explain);
+  return card;
+}
+
+function renderPassageCard(item, idx, unit){
+  const card = document.createElement("div");
+  card.className = "card passage-card";
+  const head = document.createElement("div");
+  head.className = "p-head";
+  head.innerHTML = '<span class="p-idx">지문 '+(idx+1)+'</span><span class="p-hint">어법상 틀린 곳을 클릭하세요</span>';
+  card.appendChild(head);
+
+  const p = document.createElement("div");
+  p.className = "passage";
+  const circ = ["①","②","③","④","⑤"];
+  const key = "p"+idx;
+  const prevPick = (progress[unit.id]||{})[key];
+  if(prevPick!==undefined) p.classList.add("answered");
+
+  const regex = /§(\d)\{([^}]*)\}§/g;
+  let last = 0, m;
+  while((m = regex.exec(item.text))!==null){
+    p.appendChild(document.createTextNode(item.text.slice(last,m.index)));
+    const n = parseInt(m[1],10);
+    const span = document.createElement("span");
+    span.className = "blank";
+    span.innerHTML = '<span class="circ">'+circ[n-1]+'</span>'+m[2];
+    if(prevPick!==undefined){
+      if(n===item.answer) span.classList.add("pick-correct");
+      else if(n===prevPick) span.classList.add("pick-wrong");
+    }
+    span.addEventListener("click", ()=>{
+      if(p.classList.contains("answered")) return;
+      p.classList.add("answered");
+      if(!progress[unit.id]) progress[unit.id] = {};
+      progress[unit.id][key] = n;
+      saveProgress(progress);
+      Array.from(p.querySelectorAll(".blank")).forEach(el=>{});
+      // recolor all
+      let idx2=0;
+      p.querySelectorAll(".blank").forEach((el)=>{
+        idx2++;
+        if(idx2===item.answer) el.classList.add("pick-correct");
+        else if(idx2===n) el.classList.add("pick-wrong");
+      });
+      showExplain();
+      renderNav();
+    });
+    p.appendChild(span);
+    last = regex.lastIndex;
+  }
+  p.appendChild(document.createTextNode(item.text.slice(last)));
+  card.appendChild(p);
+
+  const explain = document.createElement("div");
+  explain.className = "explain";
+  function showExplain(){
+    const chosen = (progress[unit.id]||{})[key];
+    const ok = chosen===item.answer;
+    explain.innerHTML = '<span class="tag '+(ok?'ok':'no')+'">'+(ok?'정답':'오답')+'</span>'+item.explain;
+    explain.classList.add("show");
+  }
+  if(prevPick!==undefined) showExplain();
+  card.appendChild(explain);
+  return card;
+}
+
+function render(){
+  const unit = U.find(u=>u.id===currentId);
+  renderNav();
+  const main = document.getElementById("main");
+  main.innerHTML = "";
+
+  const head = document.createElement("div");
+  head.className = "topic-head";
+  head.innerHTML =
+    '<div class="badge"><span class="num">'+unit.rank+'</span><span class="lbl">RANK</span></div>'
+    + '<div><h2>'+unit.title+'</h2><span class="rate">'+unit.rate+'</span></div>';
+  main.appendChild(head);
+
+  const formula = document.createElement("div");
+  formula.className = "card formula";
+  formula.innerHTML = '<div class="lbl">핵심 공식</div><p>'+unit.formula+'</p>';
+  main.appendChild(formula);
+
+  if(unit.structure.length){
+    const sec1 = document.createElement("div");
+    sec1.className = "section-lbl";
+    sec1.innerHTML = '<h3>최상위권 변별 &mdash; 문장 구조 판단</h3><span class="n">'+unit.structure.length+'문항</span>';
+    main.appendChild(sec1);
+    const note1 = document.createElement("p");
+    note1.className = "section-note";
+    note1.textContent = "표면적인 어휘가 아니라 문장 전체의 구조(주어·완전절 여부·시제·태)를 봐야 답이 나오도록 설계된 문항입니다.";
+    main.appendChild(note1);
+    const grid1 = document.createElement("div");
+    grid1.className = "q-grid";
+    unit.structure.forEach((it,i)=> grid1.appendChild(renderStructureCard(it,i,unit)));
+    main.appendChild(grid1);
+  }
+
+  if(unit.box && unit.box.length){
+    const secB = document.createElement("div");
+    secB.className = "section-lbl";
+    secB.innerHTML = '<h3>실제 기출 &mdash; 네모 안에서 어법상 적절한 표현 고르기</h3><span class="n">'+unit.box.length+'문항</span>';
+    main.appendChild(secB);
+    const noteB = document.createElement("p");
+    noteB.className = "section-note";
+    noteB.textContent = "(A), (B), (C) 각 네모 안에서 어법에 맞는 표현을 고른 뒤, 그 조합과 일치하는 선택지를 고르세요.";
+    main.appendChild(noteB);
+    const gridB = document.createElement("div");
+    gridB.className = "q-grid";
+    unit.box.forEach((it,i)=> gridB.appendChild(renderBoxCard(it,i,unit)));
+    main.appendChild(gridB);
+  }
+
+  const sec2 = document.createElement("div");
+  sec2.className = "section-lbl";
+  const label2 = unit.id==="kisa" ? "실제 기출 지문" : "최상위권 변별 &mdash; 수능형 지문 어법 판단";
+  sec2.innerHTML = '<h3>'+label2+'</h3><span class="n">'+unit.passages.length+'지문</span>';
+  main.appendChild(sec2);
+  const note2 = document.createElement("p");
+  note2.className = "section-note";
+  note2.textContent = unit.id==="kisa"
+    ? "실제 학력평가·모의평가에 출제된 문제 원문입니다. ①~⑤ 중 어법상 틀린 하나를 직접 찾아보고, 괄호 속 정답률과 비교해 보세요."
+    : "실제 수능처럼 한 지문 안에 여러 어법 요소를 섞어 두었습니다. ①~⑤ 중 어법상 틀린 하나만 찾으세요.";
+  main.appendChild(note2);
+  const grid2 = document.createElement("div");
+  grid2.className = "q-grid";
+  unit.passages.forEach((it,i)=> grid2.appendChild(renderPassageCard(it,i,unit)));
+  main.appendChild(grid2);
+
+  const foot = document.createElement("footer");
+  foot.className = "page";
+  foot.textContent = "최근 10개년 수능 어법 기출 패턴 분석 기반 · 자체 제작 변별형 문항 · 학습용";
+  main.appendChild(foot);
+}
+
+const resetBtn = document.getElementById("resetBtn");
+const resetLabelDefault = resetBtn.textContent;
+let resetArmed = false;
+let resetTimer = null;
+resetBtn.addEventListener("click", ()=>{
+  if(!resetArmed){
+    resetArmed = true;
+    resetBtn.textContent = "다시 누르면 초기화됩니다";
+    clearTimeout(resetTimer);
+    resetTimer = setTimeout(()=>{
+      resetArmed = false;
+      resetBtn.textContent = resetLabelDefault;
+    }, 4000);
+    return;
+  }
+  clearTimeout(resetTimer);
+  resetArmed = false;
+  resetBtn.textContent = resetLabelDefault;
+  progress = {};
+  saveProgress(progress);
+  render();
+});
+
+render();
+</script>
+</body>
+</html>
